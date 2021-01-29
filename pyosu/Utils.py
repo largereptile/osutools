@@ -9,6 +9,26 @@ class Mode(Enum):
     MANIA = 3
 
 
+class Teams(Enum):
+    NONE = 0
+    BLUE = 1
+    RED = 2
+
+
+class TeamType(Enum):
+    HEADTOHEAD = 0
+    TAGCOOP = 1
+    TEAMVS = 2
+    TAGTEAMVS = 3
+
+
+class WinCon(Enum):
+    SCORE = 0
+    ACCURACY = 1
+    COMBO = 2
+    SCOREV2 = 3
+
+
 class Approval(Enum):
     GRAVEYARD = -2
     WIP = -1
