@@ -8,8 +8,8 @@ class Score:
         self.map_id = map_id
         self.score_id = int(score_info['score_id'])
         self.score = int(score_info['score'])
-        self.username = score_info['username']
         self.user_id = score_info['user_id']
+        self.username = score_info['username'] if "username" in score_info else self.user_id
         self.timestamp = datetime.strptime(score_info['date'], "%Y-%m-%d %H:%M:%S")
         self.num_300 = int(score_info['count300'])
         self.num_100 = int(score_info['count100'])
