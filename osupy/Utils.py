@@ -54,7 +54,7 @@ class Language(Enum):
     OTHER = 14
 
 
-mod_order = ["EZ", "HD", "DT", "NC", "HT", "HR", "FL", "SD", "PF", "NF", "SO", "TF"]
+mod_order = ["EZ", "HD", "DT", "NC", "HT", "HR", "FL", "SD", "PF", "NF", "SO", "TF", "NM"]
 
 
 # sorry alex
@@ -105,6 +105,7 @@ class Mods(Flag):
     KEY2 = 268435456
     ScoreV2 = 536870912
     Mirror = 1073741824
+
 
 class Playtime:
     def __init__(self, seconds):
