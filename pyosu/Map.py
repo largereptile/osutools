@@ -8,7 +8,7 @@ class Map:
 
         self.song_title = map_info['title']
         self.artist = map_info['artist']
-        self.bpm = int(map_info['bpm'])
+        self.bpm = float(map_info['bpm'])
         self.genre = Genre(int(map_info['genre_id']))
         self.length = float(map_info['total_length'])
         self.language = Language(int(map_info['language_id']))
@@ -55,7 +55,7 @@ class Map:
         self.md5_hash = map_info['file_md5']
 
     def __repr__(self):
-        return f"{self.song_title} mapped by {self.creator_name}"
+        return f"{self.song_title} [{self.difficulty_name}] mapped by {self.creator_name}"
 
     def fetch_creator(self):
         return self.client.get_user(self.creator_id)
