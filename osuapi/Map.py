@@ -54,6 +54,9 @@ class Map:
         self.audio_unavailable = map_info['audio_unavailable'] == "1"
         self.md5_hash = map_info['file_md5']
 
+    def __repr__(self):
+        return f"{self.song_title} mapped by {self.creator_name}"
+
     def fetch_creator(self):
         return self.client.get_user(self.creator_id)
 

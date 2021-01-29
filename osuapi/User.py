@@ -30,3 +30,6 @@ class User:
         self.playtime = Playtime(seconds)
         self.avatar_url = f"http://s.ppy.sh/a/{self.id}"
 
+    def __repr__(self):
+        return self.username
+

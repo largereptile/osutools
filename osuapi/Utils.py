@@ -1,4 +1,4 @@
-from enum import Enum, Flag
+from enum import Enum, Flag, _decompose
 from datetime import timedelta
 
 
@@ -54,7 +54,25 @@ class Language(Enum):
     OTHER = 14
 
 
+mod_order = ["EZ", "HD", "DT", "NC", "HT", "HR", "FL", "SD", "PF", "NF", "SO", "TF"]
+
+
+# sorry alex
+# noinspection PyProtectedMember
 class Mods(Flag):
+    def __str__(self):
+        m = self.mod_list()
+        return ''.join([mod for mod in mod_order if mod in m])
+
+    def mod_list(self):
+        members, uncovered = _decompose(self.__class__, self._value_)
+        mods = [m._name_ for m in members]
+        if "DT" in mods and "NC" in mods:
+            mods.remove("DT")
+        if "SD" in mods and "PF" in mods:
+            mods.remove("SD")
+        return mods
+
     NM = 0
     NF = 1
     EZ = 2
@@ -87,7 +105,6 @@ class Mods(Flag):
     KEY2 = 268435456
     ScoreV2 = 536870912
     Mirror = 1073741824
-
 
 class Playtime:
     def __init__(self, seconds):
