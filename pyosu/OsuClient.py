@@ -2,8 +2,9 @@ import requests
 from datetime import datetime
 from .User import User
 from .Map import Map
-from .Score import Score
+from .Score import Score, RecentScore
 from .Utils import *
+from .Match import Match
 
 
 def _id_or_name(params, username, user_id):
@@ -75,9 +76,49 @@ class OsuClient:
     def fetch_user_best(self, username: str = None, user_id: int = None, mode: Mode = Mode.STANDARD, limit: int = 10):
         if not (username or user_id):
             return
-        params = {"k": self.api_key, "m": mode.value, "limit": limit}
+        params = {"m": mode.value}
+        if 1 <= limit <= 100:
+            params['limit'] = limit
         _id_or_name(params, username, user_id)
 
         best_json = self._request_api("get_user_best", params)
         if best_json:
             return [Score(score_info, self, score_info['beatmap_id']) for score_info in best_json]
+
+    def fetch_user_recent(self, username: str = None, user_id: int = None, mode: Mode = Mode.STANDARD, limit: int = 10):
+        if not (username or user_id):
+            return
+        params = {"m": mode.value}
+        _id_or_name(params, username, user_id)
+        if 1 <= limit <= 100:
+            params['limit'] = limit
+        recent_json = self._request_api("get_user_recent", params)
+        if recent_json:
+            return [RecentScore(score_info, self, score_info['beatmap_id']) for score_info in recent_json]
+
+    """
+    Requesting via beatmap and user was broken when I was testing but I'll leave the function here in case it's just
+    me being dumb
+    def fetch_replay(self,  score_id: int = None, username: str = None, user_id: int = None,
+                     mode: Mode = Mode.STANDARD, map_id: int = None, mods: Mods = Mods.NM):
+        params = {}
+        if score_id:
+            params['s'] = score_id
+        else:
+            if not (username or user_id) or not map_id:
+                return
+            _id_or_name(params, username, user_id)
+            params['b'] = map_id
+            params['m'] = mode.value
+            params['mods'] = mods.value
+        return self._request_api("get_replay", params)
+    
+    """
+
+    def fetch_replay(self, score_id: int):
+        replay_json = self._request_api("get_replay", {"s": score_id})
+        return replay_json["content"] if "content" in replay_json else None
+
+    def fetch_match(self, match_id: int):
+        match_json = self._request_api("get_match", {"mp": match_id})
+        return Match(match_json, self)
