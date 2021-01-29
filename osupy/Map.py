@@ -61,4 +61,9 @@ class Map:
         return self.client.get_user(self.creator_id)
 
     def fetch_mapset(self):
-        pass
+        return self.client.get_maps(set_id=self.mapset_id)
+
+    def fetch_scores(self, username: str = None, user_id: int = None,
+                   mode: Mode = Mode.STANDARD, mods: Mods = None, limit: int = 50):
+        return self.client.get_scores(self.beatmap_id, username=username, user_id=user_id,
+                                      mode=mode, mods=mods, limit=limit)
