@@ -1,8 +1,9 @@
-from enum import Enum, Flag, _decompose
+from enum import Enum, Flag, _decompose # yes this method is meant to be package private but Flag did everything I wanted it to apart from this
 from datetime import timedelta
 
 
 class Mode(Enum):
+    """Translates api return to osu! gamemode"""
     STANDARD = 0
     TAIKO = 1
     CTB = 2
@@ -10,12 +11,14 @@ class Mode(Enum):
 
 
 class Teams(Enum):
+    """Translates api return to osu! multiplayer team"""
     NONE = 0
     BLUE = 1
     RED = 2
 
 
 class TeamType(Enum):
+    """Translates api return to osu! multiplayer team type"""
     HEADTOHEAD = 0
     TAGCOOP = 1
     TEAMVS = 2
@@ -23,6 +26,7 @@ class TeamType(Enum):
 
 
 class WinCon(Enum):
+    """Translates api return to osu! multiplayer scoring type"""
     SCORE = 0
     ACCURACY = 1
     COMBO = 2
@@ -30,6 +34,7 @@ class WinCon(Enum):
 
 
 class Approval(Enum):
+    """Translates api return to a stage in the map ranking process"""
     GRAVEYARD = -2
     WIP = -1
     PENDING = 0
@@ -40,6 +45,7 @@ class Approval(Enum):
 
 
 class Genre(Enum):
+    """Translates an api return to a specific genre"""
     ANY = 0
     UNSPECIFIED = 1
     VIDEO_GAME = 2
@@ -57,6 +63,7 @@ class Genre(Enum):
 
 
 class Language(Enum):
+    """Translates an api return to a specific language"""
     ANY = 0
     UNSPECIFIED = 1
     ENGLISH = 2
@@ -75,16 +82,28 @@ class Language(Enum):
 
 
 mod_order = ["EZ", "HD", "DT", "NC", "HT", "HR", "FL", "SD", "PF", "NF", "SO", "TF", "NM"]
+"""[str]: Ordered list of mods. Can probably override to customise print order."""
 
 
 # sorry alex
 # noinspection PyProtectedMember
 class Mods(Flag):
+    """Translate between bitwise api return and mod combinations for a score """
     def __str__(self):
+        """Represents the mod when it is printed
+
+        Returns:
+            str: string representing the mods used in the "correct" (up to interpretation but I used scoreposts as a base) order
+        """
         m = self.mod_list()
         return ''.join([mod for mod in mod_order if mod in m])
 
     def mod_list(self):
+        """Get a list of the mods used as strings
+
+        Returns:
+            [str]: mods used as strings names
+        """
         members, uncovered = _decompose(self.__class__, self._value_)
         mods = [m._name_ for m in members]
         if "DT" in mods and "NC" in mods:
@@ -128,6 +147,14 @@ class Mods(Flag):
 
 
 def modstr_to_enums(mods: str):
+    """Translate a string of mods into their respective enums
+
+    Args:
+        mods: string to parse
+
+    Returns:
+        [Mods]: list of mods used as enums
+    """
     parsed_mods = []
     mods = mods.replace(" ", "")
     while mods:
@@ -144,10 +171,26 @@ def modstr_to_enums(mods: str):
 
 
 def parse_mod_string(mods: str):
+    """Parse a mod string into one enum representing it.
+
+    Args:
+        mods: string of mods used (e.g. "HDDTHR")
+
+    Returns:
+        Mods: Mod enum representing the mod combination
+    """
     return Mods(sum([x.value for x in modstr_to_enums(mods)]))
 
 
 class Playtime:
+    """Object holding some information about playtime. Can be printed to just show value.
+
+    Attributes:
+        seconds: seconds played
+        hours: hours played
+        days: days played
+        combined: formatted time spent playing
+    """
     def __init__(self, seconds):
         self.seconds = seconds
         self.hours = seconds / 60 / 60

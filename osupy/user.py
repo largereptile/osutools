@@ -3,6 +3,35 @@ from .utils import Mode, Playtime
 
 
 class User:
+    """Object representing JSON response from the osu! api plus some helper methods.
+
+    Attributes:
+        client: OsuClient that created the instance
+        mode: enum representing the osu! gamemode this information is for
+        id: id of the player
+        username: player's username
+        join_date: timestamp of when the player created their account
+        num_300: number of 300s player has achieved
+        num_100: number of 100s player has achieved
+        num_50: number of 50s player has achieved
+        play_count: the number of "plays" according to however osu! calculates it
+        ranked_score: combination of highest submitted scores on ranked maps
+        total_score: combination of highest submitted scores across all online maps
+        rank: the position of the player on the global leaderboard based on their pp
+        level: the player's level
+        pp: the player's pp total (points received from ranked maps)
+        accuracy: the player's average accuracy on a map as a percentage
+        ss_count: number of SS's
+        ssh_count: number of SS's with hidden
+        s_count: number of S ranks
+        sh_count: number of S ranks with hidden
+        a_count: number of A ranks
+        country: the country the player is from
+        playtime: Playtime object representing how long they have played the game
+        recents: dict containing a list of cached recent scores for each mode
+        avatar_url: the url for their profile picture
+    
+    """
     def __init__(self, user_info, osu_client, mode: Mode = Mode.STANDARD):
         self.client = osu_client
         self.mode = mode
@@ -37,13 +66,39 @@ class User:
         self.avatar_url = f"http://s.ppy.sh/a/{self.id}"
 
     def fetch_best(self, mode: Mode = Mode.STANDARD, limit: int = 10):
+        """Helper for collecting a user's best scores.
+
+        Args:
+            mode: enum representing osu! gamemode to request scores for
+            limit: number of scores to retrieve (max 100)
+
+        Returns:
+            [Score]: List of the player's best scores
+        """
         return self.client.fetch_user_best(user_id=self.id, mode=mode, limit=limit)
 
     def fetch_recent(self, mode: Mode = Mode.STANDARD, limit: int = 10):
+        """Helper for collecting a user's recent scores.
+
+        Args:
+            mode: enum representing osu! gamemode to request scores for
+            limit: number of scores to retrieve (max 100)
+
+        Returns:
+            [RecentScore]: List of the player's recent scores
+        """
         self.recents[mode] = self.client.fetch_user_recent(user_id=self.id, mode=mode, limit=limit)
         return self.recents[mode]
 
     def fetch_new_recent(self, mode: Mode = Mode.STANDARD):
+        """Retrieve any scores made since the last time this function was called.
+
+        Args:
+            mode: enum representing osu! gamemode to request scores for
+
+        Returns:
+            [RecentScore]: List of the player's scores since the most recent
+        """
         now = datetime.now()
         self.recents[mode] = [score for score in self.recents[mode] if (now - timedelta(hours=24)) <= score.timestamp <= now]
         new_scores = self.client.fetch_user_recent(user_id=self.id, mode=mode, limit=100)
