@@ -2,4 +2,4 @@
 
 todo:
 - finish readme
-- integrate pyttanko
+- pyttanko out of date, just implement pp calc yourself somehow
