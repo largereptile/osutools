@@ -173,20 +173,309 @@
 <dt id="osupy.map.Map">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.map.</code><code class="sig-name descname">Map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">map_info</span></em>, <em class="sig-param"><span class="n">client</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.map.Map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An object holding all the information about a specific beatmap.</p>
+<dl class="py attribute">
+<dt id="osupy.map.Map.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#osupy.map.Map.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>OsuClient that created the instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.song_title">
+<code class="sig-name descname">song_title</code><a class="headerlink" href="#osupy.map.Map.song_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>title of the song</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.artist">
+<code class="sig-name descname">artist</code><a class="headerlink" href="#osupy.map.Map.artist" title="Permalink to this definition">¶</a></dt>
+<dd><p>artist who wrote the song</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.bpm">
+<code class="sig-name descname">bpm</code><a class="headerlink" href="#osupy.map.Map.bpm" title="Permalink to this definition">¶</a></dt>
+<dd><p>speed of the song</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.genre">
+<code class="sig-name descname">genre</code><a class="headerlink" href="#osupy.map.Map.genre" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the genre the map was tagged with</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.length">
+<code class="sig-name descname">length</code><a class="headerlink" href="#osupy.map.Map.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>length of the map in seconds</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.language">
+<code class="sig-name descname">language</code><a class="headerlink" href="#osupy.map.Map.language" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the language the map was tagged with</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.difficulty_name">
+<code class="sig-name descname">difficulty_name</code><a class="headerlink" href="#osupy.map.Map.difficulty_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of this map, not the mapset</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.mode">
+<code class="sig-name descname">mode</code><a class="headerlink" href="#osupy.map.Map.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the osu! gamemode the map is for</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.beatmap_id">
+<code class="sig-name descname">beatmap_id</code><a class="headerlink" href="#osupy.map.Map.beatmap_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.mapset_id">
+<code class="sig-name descname">mapset_id</code><a class="headerlink" href="#osupy.map.Map.mapset_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the beatmap set</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.creator_name">
+<code class="sig-name descname">creator_name</code><a class="headerlink" href="#osupy.map.Map.creator_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the player who mapped it</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.creator_id">
+<code class="sig-name descname">creator_id</code><a class="headerlink" href="#osupy.map.Map.creator_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the player who mapped it</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.tags">
+<code class="sig-name descname">tags</code><a class="headerlink" href="#osupy.map.Map.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of the tags given to the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.cover_image_url">
+<code class="sig-name descname">cover_image_url</code><a class="headerlink" href="#osupy.map.Map.cover_image_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>the url of the image for the map on the website</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.thumbnail">
+<code class="sig-name descname">thumbnail</code><a class="headerlink" href="#osupy.map.Map.thumbnail" title="Permalink to this definition">¶</a></dt>
+<dd><p>the thumbnail of the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.favourites">
+<code class="sig-name descname">favourites</code><a class="headerlink" href="#osupy.map.Map.favourites" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of times the map has been favourite-ed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.rating">
+<code class="sig-name descname">rating</code><a class="headerlink" href="#osupy.map.Map.rating" title="Permalink to this definition">¶</a></dt>
+<dd><p>the average rating of the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.playcount">
+<code class="sig-name descname">playcount</code><a class="headerlink" href="#osupy.map.Map.playcount" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of times the map has been played</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.passcount">
+<code class="sig-name descname">passcount</code><a class="headerlink" href="#osupy.map.Map.passcount" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of times the map has been passed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.approval">
+<code class="sig-name descname">approval</code><a class="headerlink" href="#osupy.map.Map.approval" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the stage in the ranking process the map is at</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.date_submitted">
+<code class="sig-name descname">date_submitted</code><a class="headerlink" href="#osupy.map.Map.date_submitted" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of map submission</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.date_approved">
+<code class="sig-name descname">date_approved</code><a class="headerlink" href="#osupy.map.Map.date_approved" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of ranked/loved/etc. status. None if not yet approved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.last_update">
+<code class="sig-name descname">last_update</code><a class="headerlink" href="#osupy.map.Map.last_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the map was last changed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.star_rating">
+<code class="sig-name descname">star_rating</code><a class="headerlink" href="#osupy.map.Map.star_rating" title="Permalink to this definition">¶</a></dt>
+<dd><p>numerical value representing the difficulty of the map overall</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.aim_difficulty">
+<code class="sig-name descname">aim_difficulty</code><a class="headerlink" href="#osupy.map.Map.aim_difficulty" title="Permalink to this definition">¶</a></dt>
+<dd><p>numerical value representing the “aim” difficulty of the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.speed_difficulty">
+<code class="sig-name descname">speed_difficulty</code><a class="headerlink" href="#osupy.map.Map.speed_difficulty" title="Permalink to this definition">¶</a></dt>
+<dd><p>numerical value representing the “speed” difficulty of the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.circle_size">
+<code class="sig-name descname">circle_size</code><a class="headerlink" href="#osupy.map.Map.circle_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>the size of the circles in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.overall_difficulty">
+<code class="sig-name descname">overall_difficulty</code><a class="headerlink" href="#osupy.map.Map.overall_difficulty" title="Permalink to this definition">¶</a></dt>
+<dd><p>the size of the hit windows in which to click each circle</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.hp_drain">
+<code class="sig-name descname">hp_drain</code><a class="headerlink" href="#osupy.map.Map.hp_drain" title="Permalink to this definition">¶</a></dt>
+<dd><p>the speed at which you lose health</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.no_break_length">
+<code class="sig-name descname">no_break_length</code><a class="headerlink" href="#osupy.map.Map.no_break_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>the length of the map you are actually playing</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.source">
+<code class="sig-name descname">source</code><a class="headerlink" href="#osupy.map.Map.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>the source of the map (not sure what this means)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.circle_count">
+<code class="sig-name descname">circle_count</code><a class="headerlink" href="#osupy.map.Map.circle_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of circles in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.slider_count">
+<code class="sig-name descname">slider_count</code><a class="headerlink" href="#osupy.map.Map.slider_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of sliders in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.spinner_count">
+<code class="sig-name descname">spinner_count</code><a class="headerlink" href="#osupy.map.Map.spinner_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of spinners in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.total_objects">
+<code class="sig-name descname">total_objects</code><a class="headerlink" href="#osupy.map.Map.total_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>the combined number of objects in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.max_combo">
+<code class="sig-name descname">max_combo</code><a class="headerlink" href="#osupy.map.Map.max_combo" title="Permalink to this definition">¶</a></dt>
+<dd><p>the maximum combo achievable in the map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.storyboard">
+<code class="sig-name descname">storyboard</code><a class="headerlink" href="#osupy.map.Map.storyboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the map has a storyboard or not</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.video">
+<code class="sig-name descname">video</code><a class="headerlink" href="#osupy.map.Map.video" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the map has a video or not</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.download_unavailable">
+<code class="sig-name descname">download_unavailable</code><a class="headerlink" href="#osupy.map.Map.download_unavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the map is now unavailable for download</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.audio_unavailable">
+<code class="sig-name descname">audio_unavailable</code><a class="headerlink" href="#osupy.map.Map.audio_unavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the map audio is unavailable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.map.Map.md5_hash">
+<code class="sig-name descname">md5_hash</code><a class="headerlink" href="#osupy.map.Map.md5_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>the md5 hash of the map</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="osupy.map.Map.fetch_creator">
 <code class="sig-name descname">fetch_creator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.map.Map.fetch_creator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Makes an api call to get more information about the map creator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>user who mapped the map</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#osupy.user.User" title="osupy.user.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="osupy.map.Map.fetch_mapset">
 <code class="sig-name descname">fetch_mapset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.map.Map.fetch_mapset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Makes an api call to get the rest of the maps in the beatmap set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of maps in the mapset</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>[<a class="reference internal" href="#osupy.map.Map" title="osupy.map.Map">Map</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="osupy.map.Map.fetch_scores">
 <code class="sig-name descname">fetch_scores</code><span class="sig-paren">(</span><em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">mode: osupy.utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">mods: Optional[osupy.utils.Mods] = None</em>, <em class="sig-param">limit: int = 50</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.map.Map.fetch_scores" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Makes an api call to get scores for the map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – username of player to filter by</p></li>
+<li><p><strong>user_id</strong> – id of player to filter by</p></li>
+<li><p><strong>mode</strong> – mode to get the scores for</p></li>
+<li><p><strong>mods</strong> – enum representing the mods to filter by</p></li>
+<li><p><strong>limit</strong> – number of scores to return (max 100)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>scores matching the search requirements on this map</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#osupy.score.Score" title="osupy.score.Score">Score</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -197,10 +486,92 @@
 <dt id="osupy.match.Game">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.match.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">game_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">match_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.match.Game" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A specific round of a multiplayer lobby</p>
+<dl class="py attribute">
+<dt id="osupy.match.Game.game_id">
+<code class="sig-name descname">game_id</code><a class="headerlink" href="#osupy.match.Game.game_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the round</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.match_id">
+<code class="sig-name descname">match_id</code><a class="headerlink" href="#osupy.match.Game.match_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the lobby it happened in</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#osupy.match.Game.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>OsuClient that created the instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.start_time">
+<code class="sig-name descname">start_time</code><a class="headerlink" href="#osupy.match.Game.start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the game started</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.end_time">
+<code class="sig-name descname">end_time</code><a class="headerlink" href="#osupy.match.Game.end_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the game ended</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.play_mode">
+<code class="sig-name descname">play_mode</code><a class="headerlink" href="#osupy.match.Game.play_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>the gamemode the game happened in</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.map_id">
+<code class="sig-name descname">map_id</code><a class="headerlink" href="#osupy.match.Game.map_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the map that was played</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.match_type">
+<code class="sig-name descname">match_type</code><a class="headerlink" href="#osupy.match.Game.match_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>doesn’t seem to actually do anything? but the api returns it so I’m capturing it</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.score_type">
+<code class="sig-name descname">score_type</code><a class="headerlink" href="#osupy.match.Game.score_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing how the game was scored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.team_type">
+<code class="sig-name descname">team_type</code><a class="headerlink" href="#osupy.match.Game.team_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing how the teams were set</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.mods">
+<code class="sig-name descname">mods</code><a class="headerlink" href="#osupy.match.Game.mods" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the mods that were used</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Game.scores">
+<code class="sig-name descname">scores</code><a class="headerlink" href="#osupy.match.Game.scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>a list of multiplayer-specific score objects representing the results of the round for each player</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="osupy.match.Game.get_players">
 <code class="sig-name descname">get_players</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.match.Game.get_players" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The users who took part in this game. Not an api call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of user id’s</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>[int]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -208,6 +579,49 @@
 <dt id="osupy.match.Match">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.match.</code><code class="sig-name descname">Match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_info</span></em>, <em class="sig-param"><span class="n">client</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.match.Match" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A past/ongoing multiplayer lobby</p>
+<dl class="py attribute">
+<dt id="osupy.match.Match.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#osupy.match.Match.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>OsuClient that created the instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.match_id">
+<code class="sig-name descname">match_id</code><a class="headerlink" href="#osupy.match.Match.match_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>id of the lobby</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#osupy.match.Match.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the title of the lobby</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.start_time">
+<code class="sig-name descname">start_time</code><a class="headerlink" href="#osupy.match.Match.start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the match started</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.end_time">
+<code class="sig-name descname">end_time</code><a class="headerlink" href="#osupy.match.Match.end_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the match ended (or None if it is ongoing)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.games">
+<code class="sig-name descname">games</code><a class="headerlink" href="#osupy.match.Match.games" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Game] list of game objects containing info on each specific round of the lobby</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.match.Match.url">
+<code class="sig-name descname">url</code><a class="headerlink" href="#osupy.match.Match.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>the url for the match to view in a browser</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -406,10 +820,98 @@
 <dt id="osupy.score.BaseScore">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.score.</code><code class="sig-name descname">BaseScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.score.BaseScore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for a score, all types of score share these attributes.</p>
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#osupy.score.BaseScore.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>OsuClient that created this object instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.map_id">
+<code class="sig-name descname">map_id</code><a class="headerlink" href="#osupy.score.BaseScore.map_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the map the score is for</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.num_300">
+<code class="sig-name descname">num_300</code><a class="headerlink" href="#osupy.score.BaseScore.num_300" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of 300s hit in the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.num_100">
+<code class="sig-name descname">num_100</code><a class="headerlink" href="#osupy.score.BaseScore.num_100" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of 100s hit in the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.num_50">
+<code class="sig-name descname">num_50</code><a class="headerlink" href="#osupy.score.BaseScore.num_50" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of 50s hit in the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.misses">
+<code class="sig-name descname">misses</code><a class="headerlink" href="#osupy.score.BaseScore.misses" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of misses in the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.max_combo">
+<code class="sig-name descname">max_combo</code><a class="headerlink" href="#osupy.score.BaseScore.max_combo" title="Permalink to this definition">¶</a></dt>
+<dd><p>the highest combo reached by the player in this score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.num_katu">
+<code class="sig-name descname">num_katu</code><a class="headerlink" href="#osupy.score.BaseScore.num_katu" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of katu hit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.num_geki">
+<code class="sig-name descname">num_geki</code><a class="headerlink" href="#osupy.score.BaseScore.num_geki" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of geki hit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.perfect">
+<code class="sig-name descname">perfect</code><a class="headerlink" href="#osupy.score.BaseScore.perfect" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the maximum combo for the map was reached</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.user_id">
+<code class="sig-name descname">user_id</code><a class="headerlink" href="#osupy.score.BaseScore.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>id of the player who set the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.score">
+<code class="sig-name descname">score</code><a class="headerlink" href="#osupy.score.BaseScore.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>the actual numerical score for the play</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.BaseScore.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#osupy.score.BaseScore.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the player who set the score</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="osupy.score.BaseScore.fetch_user">
 <code class="sig-name descname">fetch_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.score.BaseScore.fetch_user" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Make an api call to get more information about user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the user who set the score</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#osupy.user.User" title="osupy.user.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -417,18 +919,117 @@
 <dt id="osupy.score.MultiScore">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.score.</code><code class="sig-name descname">MultiScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span><span class="p">:</span> <span class="n">dict</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">match_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">game_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">mods</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#osupy.utils.Mods" title="osupy.utils.Mods">osupy.utils.Mods</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.score.MultiScore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#osupy.score.BaseScore" title="osupy.score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.score.BaseScore</span></code></a></p>
+<p>Multiplayer lobby score object.</p>
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.game_id">
+<code class="sig-name descname">game_id</code><a class="headerlink" href="#osupy.score.MultiScore.game_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the game it was set in</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.match_id">
+<code class="sig-name descname">match_id</code><a class="headerlink" href="#osupy.score.MultiScore.match_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the match it ws set in</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.slot">
+<code class="sig-name descname">slot</code><a class="headerlink" href="#osupy.score.MultiScore.slot" title="Permalink to this definition">¶</a></dt>
+<dd><p>where in the lobby the player was positioned</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.team">
+<code class="sig-name descname">team</code><a class="headerlink" href="#osupy.score.MultiScore.team" title="Permalink to this definition">¶</a></dt>
+<dd><p>what team the player was on</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.rank">
+<code class="sig-name descname">rank</code><a class="headerlink" href="#osupy.score.MultiScore.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>letter achieved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.passed">
+<code class="sig-name descname">passed</code><a class="headerlink" href="#osupy.score.MultiScore.passed" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if the player passed or not</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.MultiScore.mods">
+<code class="sig-name descname">mods</code><a class="headerlink" href="#osupy.score.MultiScore.mods" title="Permalink to this definition">¶</a></dt>
+<dd><p>all the mods this player used, not necessarily the same as other scores from the same game</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt id="osupy.score.RecentScore">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.score.</code><code class="sig-name descname">RecentScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.score.RecentScore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#osupy.score.BaseScore" title="osupy.score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.score.BaseScore</span></code></a></p>
+<p>Score object used when getting recent scores.</p>
+<dl class="py attribute">
+<dt id="osupy.score.RecentScore.timestamp">
+<code class="sig-name descname">timestamp</code><a class="headerlink" href="#osupy.score.RecentScore.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>when the score was set</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.RecentScore.mods">
+<code class="sig-name descname">mods</code><a class="headerlink" href="#osupy.score.RecentScore.mods" title="Permalink to this definition">¶</a></dt>
+<dd><p>the mod combination used</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.RecentScore.rank">
+<code class="sig-name descname">rank</code><a class="headerlink" href="#osupy.score.RecentScore.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>letter representing how good the score is</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt id="osupy.score.Score">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.score.</code><code class="sig-name descname">Score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.score.Score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#osupy.score.BaseScore" title="osupy.score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.score.BaseScore</span></code></a></p>
+<p>Generic score object, returned when searching or getting best plays.</p>
+<dl class="py attribute">
+<dt id="osupy.score.Score.score_id">
+<code class="sig-name descname">score_id</code><a class="headerlink" href="#osupy.score.Score.score_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.Score.timestamp">
+<code class="sig-name descname">timestamp</code><a class="headerlink" href="#osupy.score.Score.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>when the score was set</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.Score.mods">
+<code class="sig-name descname">mods</code><a class="headerlink" href="#osupy.score.Score.mods" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the mod combination used</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.Score.rank">
+<code class="sig-name descname">rank</code><a class="headerlink" href="#osupy.score.Score.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>letter representing how good the score is</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.Score.pp">
+<code class="sig-name descname">pp</code><a class="headerlink" href="#osupy.score.Score.pp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the amount of pp rewarded for the score</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.score.Score.replay_available">
+<code class="sig-name descname">replay_available</code><a class="headerlink" href="#osupy.score.Score.replay_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean representing if it is possible to download the replay of the map</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -438,20 +1039,207 @@
 <dt id="osupy.user.User">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.user.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param">user_info</em>, <em class="sig-param">osu_client</em>, <em class="sig-param">mode: osupy.utils.Mode = &lt;Mode.STANDARD: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.user.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object representing JSON response from the osu! api plus some helper methods.</p>
+<dl class="py attribute">
+<dt id="osupy.user.User.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#osupy.user.User.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>OsuClient that created the instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.mode">
+<code class="sig-name descname">mode</code><a class="headerlink" href="#osupy.user.User.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>enum representing the osu! gamemode this information is for</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#osupy.user.User.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>id of the player</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#osupy.user.User.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>player’s username</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.join_date">
+<code class="sig-name descname">join_date</code><a class="headerlink" href="#osupy.user.User.join_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>timestamp of when the player created their account</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.num_300">
+<code class="sig-name descname">num_300</code><a class="headerlink" href="#osupy.user.User.num_300" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of 300s player has achieved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.num_100">
+<code class="sig-name descname">num_100</code><a class="headerlink" href="#osupy.user.User.num_100" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of 100s player has achieved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.num_50">
+<code class="sig-name descname">num_50</code><a class="headerlink" href="#osupy.user.User.num_50" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of 50s player has achieved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.play_count">
+<code class="sig-name descname">play_count</code><a class="headerlink" href="#osupy.user.User.play_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of “plays” according to however osu! calculates it</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.ranked_score">
+<code class="sig-name descname">ranked_score</code><a class="headerlink" href="#osupy.user.User.ranked_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>combination of highest submitted scores on ranked maps</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.total_score">
+<code class="sig-name descname">total_score</code><a class="headerlink" href="#osupy.user.User.total_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>combination of highest submitted scores across all online maps</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.rank">
+<code class="sig-name descname">rank</code><a class="headerlink" href="#osupy.user.User.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>the position of the player on the global leaderboard based on their pp</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.level">
+<code class="sig-name descname">level</code><a class="headerlink" href="#osupy.user.User.level" title="Permalink to this definition">¶</a></dt>
+<dd><p>the player’s level</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.pp">
+<code class="sig-name descname">pp</code><a class="headerlink" href="#osupy.user.User.pp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the player’s pp total (points received from ranked maps)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.accuracy">
+<code class="sig-name descname">accuracy</code><a class="headerlink" href="#osupy.user.User.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>the player’s average accuracy on a map as a percentage</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.ss_count">
+<code class="sig-name descname">ss_count</code><a class="headerlink" href="#osupy.user.User.ss_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of SS’s</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.ssh_count">
+<code class="sig-name descname">ssh_count</code><a class="headerlink" href="#osupy.user.User.ssh_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of SS’s with hidden</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.s_count">
+<code class="sig-name descname">s_count</code><a class="headerlink" href="#osupy.user.User.s_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of S ranks</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.sh_count">
+<code class="sig-name descname">sh_count</code><a class="headerlink" href="#osupy.user.User.sh_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of S ranks with hidden</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.a_count">
+<code class="sig-name descname">a_count</code><a class="headerlink" href="#osupy.user.User.a_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of A ranks</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.country">
+<code class="sig-name descname">country</code><a class="headerlink" href="#osupy.user.User.country" title="Permalink to this definition">¶</a></dt>
+<dd><p>the country the player is from</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.playtime">
+<code class="sig-name descname">playtime</code><a class="headerlink" href="#osupy.user.User.playtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Playtime object representing how long they have played the game</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.recents">
+<code class="sig-name descname">recents</code><a class="headerlink" href="#osupy.user.User.recents" title="Permalink to this definition">¶</a></dt>
+<dd><p>dict containing a list of cached recent scores for each mode</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.user.User.avatar_url">
+<code class="sig-name descname">avatar_url</code><a class="headerlink" href="#osupy.user.User.avatar_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>the url for their profile picture</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="osupy.user.User.fetch_best">
 <code class="sig-name descname">fetch_best</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.user.User.fetch_best" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Helper for collecting a user’s best scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – enum representing osu! gamemode to request scores for</p></li>
+<li><p><strong>limit</strong> – number of scores to retrieve (max 100)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of the player’s best scores</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#osupy.score.Score" title="osupy.score.Score">Score</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="osupy.user.User.fetch_new_recent">
 <code class="sig-name descname">fetch_new_recent</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.utils.Mode = &lt;Mode.STANDARD: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.user.User.fetch_new_recent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Retrieve any scores made since the last time this function was called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> – enum representing osu! gamemode to request scores for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of the player’s scores since the most recent</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#osupy.score.RecentScore" title="osupy.score.RecentScore">RecentScore</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="osupy.user.User.fetch_recent">
 <code class="sig-name descname">fetch_recent</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.user.User.fetch_recent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Helper for collecting a user’s recent scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – enum representing osu! gamemode to request scores for</p></li>
+<li><p><strong>limit</strong> – number of scores to retrieve (max 100)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of the player’s recent scores</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#osupy.score.RecentScore" title="osupy.score.RecentScore">RecentScore</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -462,7 +1250,7 @@
 <dt id="osupy.utils.Approval">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Approval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Approval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates api return to a stage in the map ranking process</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Approval.APPROVED">
 <code class="sig-name descname">APPROVED</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.utils.Approval.APPROVED" title="Permalink to this definition">¶</a></dt>
@@ -504,7 +1292,7 @@
 <dt id="osupy.utils.Genre">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Genre</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Genre" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates an api return to a specific genre</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Genre.ANIME">
 <code class="sig-name descname">ANIME</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.utils.Genre.ANIME" title="Permalink to this definition">¶</a></dt>
@@ -581,7 +1369,7 @@
 <dt id="osupy.utils.Language">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Language</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Language" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates an api return to a specific language</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Language.ANY">
 <code class="sig-name descname">ANY</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.utils.Language.ANY" title="Permalink to this definition">¶</a></dt>
@@ -663,7 +1451,7 @@
 <dt id="osupy.utils.Mode">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates api return to osu! gamemode</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Mode.CTB">
 <code class="sig-name descname">CTB</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.utils.Mode.CTB" title="Permalink to this definition">¶</a></dt>
@@ -690,7 +1478,7 @@
 <dt id="osupy.utils.Mods">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Mods</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Mods" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Flag</span></code></p>
-<p>An enumeration.</p>
+<p>Translate between bitwise api return and mod combinations for a score</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Mods.Autopilot">
 <code class="sig-name descname">Autopilot</code><em class="property"> = 8192</em><a class="headerlink" href="#osupy.utils.Mods.Autopilot" title="Permalink to this definition">¶</a></dt>
@@ -854,7 +1642,16 @@
 <dl class="py method">
 <dt id="osupy.utils.Mods.mod_list">
 <code class="sig-name descname">mod_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Mods.mod_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get a list of the mods used as strings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>mods used as strings names</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>[str]</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -862,13 +1659,38 @@
 <dt id="osupy.utils.Playtime">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Playtime</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seconds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Playtime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object holding some information about playtime. Can be printed to just show value.</p>
+<dl class="py attribute">
+<dt id="osupy.utils.Playtime.seconds">
+<code class="sig-name descname">seconds</code><a class="headerlink" href="#osupy.utils.Playtime.seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>seconds played</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.utils.Playtime.hours">
+<code class="sig-name descname">hours</code><a class="headerlink" href="#osupy.utils.Playtime.hours" title="Permalink to this definition">¶</a></dt>
+<dd><p>hours played</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.utils.Playtime.days">
+<code class="sig-name descname">days</code><a class="headerlink" href="#osupy.utils.Playtime.days" title="Permalink to this definition">¶</a></dt>
+<dd><p>days played</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.utils.Playtime.combined">
+<code class="sig-name descname">combined</code><a class="headerlink" href="#osupy.utils.Playtime.combined" title="Permalink to this definition">¶</a></dt>
+<dd><p>formatted time spent playing</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt id="osupy.utils.TeamType">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">TeamType</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.TeamType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates api return to osu! multiplayer team type</p>
 <dl class="py attribute">
 <dt id="osupy.utils.TeamType.HEADTOHEAD">
 <code class="sig-name descname">HEADTOHEAD</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.utils.TeamType.HEADTOHEAD" title="Permalink to this definition">¶</a></dt>
@@ -895,7 +1717,7 @@
 <dt id="osupy.utils.Teams">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">Teams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.Teams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates api return to osu! multiplayer team</p>
 <dl class="py attribute">
 <dt id="osupy.utils.Teams.BLUE">
 <code class="sig-name descname">BLUE</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.utils.Teams.BLUE" title="Permalink to this definition">¶</a></dt>
@@ -917,7 +1739,7 @@
 <dt id="osupy.utils.WinCon">
 <em class="property">class </em><code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">WinCon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.WinCon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
-<p>An enumeration.</p>
+<p>Translates api return to osu! multiplayer scoring type</p>
 <dl class="py attribute">
 <dt id="osupy.utils.WinCon.ACCURACY">
 <code class="sig-name descname">ACCURACY</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.utils.WinCon.ACCURACY" title="Permalink to this definition">¶</a></dt>
@@ -940,15 +1762,50 @@
 
 </dd></dl>
 
+<dl class="py data">
+<dt id="osupy.utils.mod_order">
+<code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">mod_order</code><em class="property"> = ['EZ', 'HD', 'DT', 'NC', 'HT', 'HR', 'FL', 'SD', 'PF', 'NF', 'SO', 'TF', 'NM']</em><a class="headerlink" href="#osupy.utils.mod_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordered list of mods. Can probably override to customise print order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt id="osupy.utils.modstr_to_enums">
 <code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">modstr_to_enums</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mods</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.modstr_to_enums" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Translate a string of mods into their respective enums</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mods</strong> – string to parse</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of mods used as enums</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#osupy.utils.Mods" title="osupy.utils.Mods">Mods</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="osupy.utils.parse_mod_string">
 <code class="sig-prename descclassname">osupy.utils.</code><code class="sig-name descname">parse_mod_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mods</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.utils.parse_mod_string" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parse a mod string into one enum representing it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mods</strong> – string of mods used (e.g. “HDDTHR”)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Mod enum representing the mod combination</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#osupy.utils.Mods" title="osupy.utils.Mods">Mods</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-osupy">
