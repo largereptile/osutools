@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from .Utils import Mode, Playtime
+from .utils import Mode, Playtime
 
 
 class User:

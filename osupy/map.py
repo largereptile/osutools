@@ -1,5 +1,5 @@
 from datetime import datetime
-from .Utils import *
+from .utils import *
 
 
 class Map:

@@ -127,6 +127,26 @@ class Mods(Flag):
     Mirror = 1073741824
 
 
+def modstr_to_enums(mods: str):
+    parsed_mods = []
+    mods = mods.replace(" ", "")
+    while mods:
+        mod_str = ""
+        for letter in mods:
+            mod_str += letter
+            try:
+                parsed_mods.append(Mods[mod_str])
+                break
+            except KeyError:
+                pass
+        mods = mods[len(mod_str):]
+    return parsed_mods
+
+
+def parse_mod_string(mods: str):
+    return Mods(sum([x.value for x in modstr_to_enums(mods)]))
+
+
 class Playtime:
     def __init__(self, seconds):
         self.seconds = seconds

@@ -1,5 +1,5 @@
 from datetime import datetime
-from .Utils import *
+from .utils import *
 
 
 class BaseScore:
@@ -17,6 +17,9 @@ class BaseScore:
         self.user_id = int(score_info['user_id'])
         self.score = int(score_info['score'])
         self.username = score_info['username'] if "username" in score_info else self.user_id
+
+    def fetch_user(self):
+        return self.client.fetch_user(user_id=self.user_id)
 
 
 class Score(BaseScore):

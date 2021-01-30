@@ -1,6 +1,6 @@
 from datetime import datetime
-from .Utils import *
-from .Score import MultiScore
+from .utils import *
+from .score import MultiScore
 
 
 class Match:
@@ -35,6 +35,9 @@ class Game:
         self.mods = Mods(int(game_info['mods']))
         self.scores = [MultiScore(score_info, client, self.map_id, match_id, self.game_id, self.mods)
                        for score_info in game_info['scores']]
+
+    def get_players(self):
+        return [score.user_id for score in self.scores]
 
     def __repr__(self):
         return f"{self.game_id}: {self.score_type.name} {self.team_type.name} game with {self.mods} on map {self.map_id}"
