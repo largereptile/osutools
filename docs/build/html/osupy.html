@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>osupy package &mdash; osu.py 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> osu.py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">osupy package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-osupy.Map">osupy.Map module</a></li>
+<li><a class="reference internal" href="#module-osupy.Match">osupy.Match module</a></li>
+<li><a class="reference internal" href="#module-osupy.OsuClient">osupy.OsuClient module</a></li>
+<li><a class="reference internal" href="#module-osupy.Score">osupy.Score module</a></li>
+<li><a class="reference internal" href="#module-osupy.User">osupy.User module</a></li>
+<li><a class="reference internal" href="#module-osupy.Utils">osupy.Utils module</a></li>
+<li><a class="reference internal" href="#module-osupy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">osu.py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>osupy package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/osupy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="osupy-package">
+<h1>osupy package<a class="headerlink" href="#osupy-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-osupy.Map">
+<span id="osupy-map-module"></span><h2>osupy.Map module<a class="headerlink" href="#module-osupy.Map" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.Map.Map">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Map.</code><code class="sig-name descname">Map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">map_info</span></em>, <em class="sig-param"><span class="n">client</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Map.Map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="osupy.Map.Map.fetch_creator">
+<code class="sig-name descname">fetch_creator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Map.Map.fetch_creator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.Map.Map.fetch_mapset">
+<code class="sig-name descname">fetch_mapset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Map.Map.fetch_mapset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.Map.Map.fetch_scores">
+<code class="sig-name descname">fetch_scores</code><span class="sig-paren">(</span><em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">mods: Optional[osupy.Utils.Mods] = None</em>, <em class="sig-param">limit: int = 50</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Map.Map.fetch_scores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy.Match">
+<span id="osupy-match-module"></span><h2>osupy.Match module<a class="headerlink" href="#module-osupy.Match" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.Match.Game">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Match.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">game_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">match_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Match.Game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="osupy.Match.Game.get_players">
+<code class="sig-name descname">get_players</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Match.Game.get_players" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Match.Match">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Match.</code><code class="sig-name descname">Match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_info</span></em>, <em class="sig-param"><span class="n">client</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Match.Match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy.OsuClient">
+<span id="osupy-osuclient-module"></span><h2>osupy.OsuClient module<a class="headerlink" href="#module-osupy.OsuClient" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.OsuClient.OsuClient">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.OsuClient.</code><code class="sig-name descname">OsuClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_map">
+<code class="sig-name descname">fetch_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">map_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_maps">
+<code class="sig-name descname">fetch_maps</code><span class="sig-paren">(</span><em class="sig-param">set_id: Optional[int] = None</em>, <em class="sig-param">map_id: Optional[int] = None</em>, <em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">map_hash: Optional[str] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">converts: int = 0</em>, <em class="sig-param">limit: int = 500</em>, <em class="sig-param">mods: osupy.Utils.Mods = &lt;Mods.NM: 0&gt;</em>, <em class="sig-param">since: Optional[datetime.datetime] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_maps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_match">
+<code class="sig-name descname">fetch_match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">match_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_replay">
+<code class="sig-name descname">fetch_replay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_replay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_scores">
+<code class="sig-name descname">fetch_scores</code><span class="sig-paren">(</span><em class="sig-param">map_id: int</em>, <em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">mods: Optional[osupy.Utils.Mods] = None</em>, <em class="sig-param">limit: int = 50</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_scores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_user">
+<code class="sig-name descname">fetch_user</code><span class="sig-paren">(</span><em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_user_best">
+<code class="sig-name descname">fetch_user_best</code><span class="sig-paren">(</span><em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_user_best" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.OsuClient.OsuClient.fetch_user_recent">
+<code class="sig-name descname">fetch_user_recent</code><span class="sig-paren">(</span><em class="sig-param">username: Optional[str] = None</em>, <em class="sig-param">user_id: Optional[int] = None</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.OsuClient.OsuClient.fetch_user_recent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy.Score">
+<span id="osupy-score-module"></span><h2>osupy.Score module<a class="headerlink" href="#module-osupy.Score" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.Score.BaseScore">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Score.</code><code class="sig-name descname">BaseScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Score.BaseScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="osupy.Score.BaseScore.fetch_user">
+<code class="sig-name descname">fetch_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Score.BaseScore.fetch_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Score.MultiScore">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Score.</code><code class="sig-name descname">MultiScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span><span class="p">:</span> <span class="n">dict</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">match_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">game_id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">mods</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#osupy.Utils.Mods" title="osupy.Utils.Mods">osupy.Utils.Mods</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Score.MultiScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#osupy.Score.BaseScore" title="osupy.Score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.Score.BaseScore</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Score.RecentScore">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Score.</code><code class="sig-name descname">RecentScore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Score.RecentScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#osupy.Score.BaseScore" title="osupy.Score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.Score.BaseScore</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Score.Score">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Score.</code><code class="sig-name descname">Score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">score_info</span></em>, <em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">map_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Score.Score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#osupy.Score.BaseScore" title="osupy.Score.BaseScore"><code class="xref py py-class docutils literal notranslate"><span class="pre">osupy.Score.BaseScore</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy.User">
+<span id="osupy-user-module"></span><h2>osupy.User module<a class="headerlink" href="#module-osupy.User" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.User.User">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.User.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param">user_info</em>, <em class="sig-param">osu_client</em>, <em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.User.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="osupy.User.User.fetch_best">
+<code class="sig-name descname">fetch_best</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.User.User.fetch_best" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.User.User.fetch_new_recent">
+<code class="sig-name descname">fetch_new_recent</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.User.User.fetch_new_recent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.User.User.fetch_recent">
+<code class="sig-name descname">fetch_recent</code><span class="sig-paren">(</span><em class="sig-param">mode: osupy.Utils.Mode = &lt;Mode.STANDARD: 0&gt;</em>, <em class="sig-param">limit: int = 10</em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.User.User.fetch_recent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy.Utils">
+<span id="osupy-utils-module"></span><h2>osupy.Utils module<a class="headerlink" href="#module-osupy.Utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="osupy.Utils.Approval">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Approval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Approval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.APPROVED">
+<code class="sig-name descname">APPROVED</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Approval.APPROVED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.GRAVEYARD">
+<code class="sig-name descname">GRAVEYARD</code><em class="property"> = -2</em><a class="headerlink" href="#osupy.Utils.Approval.GRAVEYARD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.LOVED">
+<code class="sig-name descname">LOVED</code><em class="property"> = 4</em><a class="headerlink" href="#osupy.Utils.Approval.LOVED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.PENDING">
+<code class="sig-name descname">PENDING</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Approval.PENDING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.QUALIFIED">
+<code class="sig-name descname">QUALIFIED</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.Approval.QUALIFIED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.RANKED">
+<code class="sig-name descname">RANKED</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Approval.RANKED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Approval.WIP">
+<code class="sig-name descname">WIP</code><em class="property"> = -1</em><a class="headerlink" href="#osupy.Utils.Approval.WIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Genre">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Genre</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Genre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.ANIME">
+<code class="sig-name descname">ANIME</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.Genre.ANIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.ANY">
+<code class="sig-name descname">ANY</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Genre.ANY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.CLASSICAL">
+<code class="sig-name descname">CLASSICAL</code><em class="property"> = 12</em><a class="headerlink" href="#osupy.Utils.Genre.CLASSICAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.ELECTRONIC">
+<code class="sig-name descname">ELECTRONIC</code><em class="property"> = 10</em><a class="headerlink" href="#osupy.Utils.Genre.ELECTRONIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.FOLK">
+<code class="sig-name descname">FOLK</code><em class="property"> = 13</em><a class="headerlink" href="#osupy.Utils.Genre.FOLK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.HIP_HOP">
+<code class="sig-name descname">HIP_HOP</code><em class="property"> = 9</em><a class="headerlink" href="#osupy.Utils.Genre.HIP_HOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.JAZZ">
+<code class="sig-name descname">JAZZ</code><em class="property"> = 14</em><a class="headerlink" href="#osupy.Utils.Genre.JAZZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.METAL">
+<code class="sig-name descname">METAL</code><em class="property"> = 11</em><a class="headerlink" href="#osupy.Utils.Genre.METAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.NOVELTY">
+<code class="sig-name descname">NOVELTY</code><em class="property"> = 7</em><a class="headerlink" href="#osupy.Utils.Genre.NOVELTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.OTHER">
+<code class="sig-name descname">OTHER</code><em class="property"> = 6</em><a class="headerlink" href="#osupy.Utils.Genre.OTHER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.POP">
+<code class="sig-name descname">POP</code><em class="property"> = 5</em><a class="headerlink" href="#osupy.Utils.Genre.POP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.ROCK">
+<code class="sig-name descname">ROCK</code><em class="property"> = 4</em><a class="headerlink" href="#osupy.Utils.Genre.ROCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.UNSPECIFIED">
+<code class="sig-name descname">UNSPECIFIED</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Genre.UNSPECIFIED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Genre.VIDEO_GAME">
+<code class="sig-name descname">VIDEO_GAME</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Genre.VIDEO_GAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Language">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Language</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.ANY">
+<code class="sig-name descname">ANY</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Language.ANY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.CHINESE">
+<code class="sig-name descname">CHINESE</code><em class="property"> = 4</em><a class="headerlink" href="#osupy.Utils.Language.CHINESE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.ENGLISH">
+<code class="sig-name descname">ENGLISH</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Language.ENGLISH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.FRENCH">
+<code class="sig-name descname">FRENCH</code><em class="property"> = 7</em><a class="headerlink" href="#osupy.Utils.Language.FRENCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.GERMAN">
+<code class="sig-name descname">GERMAN</code><em class="property"> = 8</em><a class="headerlink" href="#osupy.Utils.Language.GERMAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.INSTRUMENTAL">
+<code class="sig-name descname">INSTRUMENTAL</code><em class="property"> = 5</em><a class="headerlink" href="#osupy.Utils.Language.INSTRUMENTAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.ITALIAN">
+<code class="sig-name descname">ITALIAN</code><em class="property"> = 11</em><a class="headerlink" href="#osupy.Utils.Language.ITALIAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.JAPANESE">
+<code class="sig-name descname">JAPANESE</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.Language.JAPANESE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.KOREAN">
+<code class="sig-name descname">KOREAN</code><em class="property"> = 6</em><a class="headerlink" href="#osupy.Utils.Language.KOREAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.OTHER">
+<code class="sig-name descname">OTHER</code><em class="property"> = 14</em><a class="headerlink" href="#osupy.Utils.Language.OTHER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.POLISH">
+<code class="sig-name descname">POLISH</code><em class="property"> = 13</em><a class="headerlink" href="#osupy.Utils.Language.POLISH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.RUSSIAN">
+<code class="sig-name descname">RUSSIAN</code><em class="property"> = 12</em><a class="headerlink" href="#osupy.Utils.Language.RUSSIAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.SPANISH">
+<code class="sig-name descname">SPANISH</code><em class="property"> = 10</em><a class="headerlink" href="#osupy.Utils.Language.SPANISH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.SWEDISH">
+<code class="sig-name descname">SWEDISH</code><em class="property"> = 9</em><a class="headerlink" href="#osupy.Utils.Language.SWEDISH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Language.UNSPECIFIED">
+<code class="sig-name descname">UNSPECIFIED</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Language.UNSPECIFIED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Mode">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Mode.CTB">
+<code class="sig-name descname">CTB</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Mode.CTB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mode.MANIA">
+<code class="sig-name descname">MANIA</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.Mode.MANIA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mode.STANDARD">
+<code class="sig-name descname">STANDARD</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Mode.STANDARD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mode.TAIKO">
+<code class="sig-name descname">TAIKO</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Mode.TAIKO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Mods">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Mods</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Mods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Flag</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Autopilot">
+<code class="sig-name descname">Autopilot</code><em class="property"> = 8192</em><a class="headerlink" href="#osupy.Utils.Mods.Autopilot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Autotap">
+<code class="sig-name descname">Autotap</code><em class="property"> = 2048</em><a class="headerlink" href="#osupy.Utils.Mods.Autotap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Cinema">
+<code class="sig-name descname">Cinema</code><em class="property"> = 4194304</em><a class="headerlink" href="#osupy.Utils.Mods.Cinema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.DT">
+<code class="sig-name descname">DT</code><em class="property"> = 64</em><a class="headerlink" href="#osupy.Utils.Mods.DT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.EZ">
+<code class="sig-name descname">EZ</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Mods.EZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.FL">
+<code class="sig-name descname">FL</code><em class="property"> = 1024</em><a class="headerlink" href="#osupy.Utils.Mods.FL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.FadeIn">
+<code class="sig-name descname">FadeIn</code><em class="property"> = 1048576</em><a class="headerlink" href="#osupy.Utils.Mods.FadeIn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.HD">
+<code class="sig-name descname">HD</code><em class="property"> = 8</em><a class="headerlink" href="#osupy.Utils.Mods.HD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.HR">
+<code class="sig-name descname">HR</code><em class="property"> = 16</em><a class="headerlink" href="#osupy.Utils.Mods.HR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.HT">
+<code class="sig-name descname">HT</code><em class="property"> = 256</em><a class="headerlink" href="#osupy.Utils.Mods.HT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY1">
+<code class="sig-name descname">KEY1</code><em class="property"> = 67108864</em><a class="headerlink" href="#osupy.Utils.Mods.KEY1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY2">
+<code class="sig-name descname">KEY2</code><em class="property"> = 268435456</em><a class="headerlink" href="#osupy.Utils.Mods.KEY2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY3">
+<code class="sig-name descname">KEY3</code><em class="property"> = 134217728</em><a class="headerlink" href="#osupy.Utils.Mods.KEY3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY4">
+<code class="sig-name descname">KEY4</code><em class="property"> = 32768</em><a class="headerlink" href="#osupy.Utils.Mods.KEY4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY5">
+<code class="sig-name descname">KEY5</code><em class="property"> = 65536</em><a class="headerlink" href="#osupy.Utils.Mods.KEY5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY6">
+<code class="sig-name descname">KEY6</code><em class="property"> = 131072</em><a class="headerlink" href="#osupy.Utils.Mods.KEY6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY7">
+<code class="sig-name descname">KEY7</code><em class="property"> = 262144</em><a class="headerlink" href="#osupy.Utils.Mods.KEY7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY8">
+<code class="sig-name descname">KEY8</code><em class="property"> = 524288</em><a class="headerlink" href="#osupy.Utils.Mods.KEY8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEY9">
+<code class="sig-name descname">KEY9</code><em class="property"> = 16777216</em><a class="headerlink" href="#osupy.Utils.Mods.KEY9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.KEYCOOP">
+<code class="sig-name descname">KEYCOOP</code><em class="property"> = 33554432</em><a class="headerlink" href="#osupy.Utils.Mods.KEYCOOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Mirror">
+<code class="sig-name descname">Mirror</code><em class="property"> = 1073741824</em><a class="headerlink" href="#osupy.Utils.Mods.Mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.NC">
+<code class="sig-name descname">NC</code><em class="property"> = 512</em><a class="headerlink" href="#osupy.Utils.Mods.NC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.NF">
+<code class="sig-name descname">NF</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Mods.NF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.NM">
+<code class="sig-name descname">NM</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Mods.NM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.PF">
+<code class="sig-name descname">PF</code><em class="property"> = 16384</em><a class="headerlink" href="#osupy.Utils.Mods.PF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.RX">
+<code class="sig-name descname">RX</code><em class="property"> = 128</em><a class="headerlink" href="#osupy.Utils.Mods.RX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Random">
+<code class="sig-name descname">Random</code><em class="property"> = 2097152</em><a class="headerlink" href="#osupy.Utils.Mods.Random" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.SD">
+<code class="sig-name descname">SD</code><em class="property"> = 32</em><a class="headerlink" href="#osupy.Utils.Mods.SD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.SO">
+<code class="sig-name descname">SO</code><em class="property"> = 4096</em><a class="headerlink" href="#osupy.Utils.Mods.SO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.ScoreV2">
+<code class="sig-name descname">ScoreV2</code><em class="property"> = 536870912</em><a class="headerlink" href="#osupy.Utils.Mods.ScoreV2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.TD">
+<code class="sig-name descname">TD</code><em class="property"> = 4</em><a class="headerlink" href="#osupy.Utils.Mods.TD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Mods.Target">
+<code class="sig-name descname">Target</code><em class="property"> = 8388608</em><a class="headerlink" href="#osupy.Utils.Mods.Target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="osupy.Utils.Mods.mod_list">
+<code class="sig-name descname">mod_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Mods.mod_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Playtime">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Playtime</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seconds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Playtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.TeamType">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">TeamType</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.TeamType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.TeamType.HEADTOHEAD">
+<code class="sig-name descname">HEADTOHEAD</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.TeamType.HEADTOHEAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.TeamType.TAGCOOP">
+<code class="sig-name descname">TAGCOOP</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.TeamType.TAGCOOP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.TeamType.TAGTEAMVS">
+<code class="sig-name descname">TAGTEAMVS</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.TeamType.TAGTEAMVS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.TeamType.TEAMVS">
+<code class="sig-name descname">TEAMVS</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.TeamType.TEAMVS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.Teams">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">Teams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.Teams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.Teams.BLUE">
+<code class="sig-name descname">BLUE</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.Teams.BLUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Teams.NONE">
+<code class="sig-name descname">NONE</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.Teams.NONE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.Teams.RED">
+<code class="sig-name descname">RED</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.Teams.RED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="osupy.Utils.WinCon">
+<em class="property">class </em><code class="sig-prename descclassname">osupy.Utils.</code><code class="sig-name descname">WinCon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#osupy.Utils.WinCon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="osupy.Utils.WinCon.ACCURACY">
+<code class="sig-name descname">ACCURACY</code><em class="property"> = 1</em><a class="headerlink" href="#osupy.Utils.WinCon.ACCURACY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.WinCon.COMBO">
+<code class="sig-name descname">COMBO</code><em class="property"> = 2</em><a class="headerlink" href="#osupy.Utils.WinCon.COMBO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.WinCon.SCORE">
+<code class="sig-name descname">SCORE</code><em class="property"> = 0</em><a class="headerlink" href="#osupy.Utils.WinCon.SCORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="osupy.Utils.WinCon.SCOREV2">
+<code class="sig-name descname">SCOREV2</code><em class="property"> = 3</em><a class="headerlink" href="#osupy.Utils.WinCon.SCOREV2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-osupy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-osupy" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, ito.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
