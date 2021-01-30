@@ -4,50 +4,50 @@ osupy package
 Submodules
 ----------
 
-osupy.Map module
+osupy.map module
 ----------------
 
-.. automodule:: osupy.Map
+.. automodule:: osupy.map
    :members:
    :undoc-members:
    :show-inheritance:
 
-osupy.Match module
+osupy.match module
 ------------------
 
-.. automodule:: osupy.Match
+.. automodule:: osupy.match
    :members:
    :undoc-members:
    :show-inheritance:
 
-osupy.OsuClient module
+osupy.osuclient module
 ----------------------
 
-.. automodule:: osupy.OsuClient
+.. automodule:: osupy.osuclient
    :members:
    :undoc-members:
    :show-inheritance:
 
-osupy.Score module
+osupy.score module
 ------------------
 
-.. automodule:: osupy.Score
+.. automodule:: osupy.score
    :members:
    :undoc-members:
    :show-inheritance:
 
-osupy.User module
+osupy.user module
 -----------------
 
-.. automodule:: osupy.User
+.. automodule:: osupy.user
    :members:
    :undoc-members:
    :show-inheritance:
 
-osupy.Utils module
+osupy.utils module
 ------------------
 
-.. automodule:: osupy.Utils
+.. automodule:: osupy.utils
    :members:
    :undoc-members:
    :show-inheritance:
