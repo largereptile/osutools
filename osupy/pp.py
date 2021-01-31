@@ -5,9 +5,9 @@ from .utils import Mods
 from .score import *
 
 
-def get_pp(beatmap: Map, score: Score = None, mods: Mods = Mods.NM, combo_reached: int = 0, misses: int = 0,
+def get_pp(o_beatmap: Map, score: Score = None, mods: Mods = Mods.NM, combo_reached: int = 0, misses: int = 0,
            num_300s: int = -1, num_100s: int = 0, num_50s: int = 0):
-    beatmap = beatmap.apply_mods(mods)
+    beatmap = o_beatmap.apply_mods(mods)
     total_hits = beatmap.total_objects
     if not (num_300s >= 0):
         num_300s = total_hits
@@ -42,7 +42,7 @@ def get_pp(beatmap: Map, score: Score = None, mods: Mods = Mods.NM, combo_reache
     speed_value = get_speed_value(beatmap, total_hits, misses, combo_reached, accuracy, num_50s, mods)
     acc_value = get_acc_value(beatmap, total_hits, accuracy, num_300s, num_100s, num_50s, mods)
 
-    return (((aim_value ** 1.1) + (speed_value ** 1.1) + (acc_value ** 1.1)) ** (1/1.1)) * multiplier
+    return (((aim_value ** 1.1) + (speed_value ** 1.1) + (acc_value ** 1.1)) ** (1 / 1.1)) * multiplier, aim_value, speed_value, acc_value
 
 
 def get_aim_value(beatmap: Map, total_hits: int, num_misses: int, combo_reached: int, accuracy: float, mods: Mods = Mods.NM):
