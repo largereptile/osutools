@@ -1,5 +1,8 @@
 from datetime import datetime
+import copy
+import math
 from .utils import *
+
 
 
 class Map:
@@ -135,3 +138,70 @@ class Map:
         """
         return self.client.get_scores(self.beatmap_id, username=username, user_id=user_id,
                                       mode=mode, mods=mods, limit=limit)
+
+    def apply_mods(self, mods: Mods):
+        od0_ms = 80
+        od10_ms = 20
+        ar0_ms = 1800
+        ar5_ms = 1200
+        ar10_ms = 450
+
+        od_ms_step = (od0_ms - od10_ms) / 10
+        ar_ms_step1 = (ar0_ms - ar5_ms) / 5
+        ar_ms_step2 = (ar5_ms - ar10_ms) / 5
+
+        speed_changing = Mods.DT | Mods.HT | Mods.NC
+        map_changing = Mods.HR | Mods.EZ | speed_changing
+
+        if not (mods & map_changing):
+            return self
+
+        updated_map = copy.copy(self)
+
+        speed_mul = 1
+        if mods & (Mods.DT | Mods.NC):
+            speed_mul = 1.5
+        if mods & Mods.HT:
+            speed_mul *= 0.75
+
+        od_ar_hp_multiplier = 1
+        if mods & Mods.HR:
+            od_ar_hp_multiplier = 1.4
+
+        if mods & Mods.EZ:
+            od_ar_hp_multiplier *= 0.5
+
+        # changing approach rate
+        updated_map.approach_rate *= od_ar_hp_multiplier
+        if updated_map.approach_rate < 5:
+            ar_ms = ar0_ms - ar_ms_step1 * updated_map.approach_rate
+        else:
+            ar_ms = ar5_ms - ar_ms_step2 * (updated_map.approach_rate - 5)
+
+        ar_ms = min(float(ar0_ms), max(float(ar10_ms), ar_ms))
+        ar_ms /= speed_mul
+
+        if ar_ms > ar5_ms:
+            updated_map.approach_rate = (ar0_ms - ar_ms) / ar_ms_step1
+        else:
+            updated_map.approach_rate = 5 + (ar5_ms - ar_ms) / ar_ms_step2
+
+        # changing od
+        updated_map.overall_difficulty *= od_ar_hp_multiplier
+        od_ms = od0_ms - math.ceil(od_ms_step * updated_map.overall_difficulty)
+        od_ms = min(od0_ms, max(od10_ms, od_ms))
+        od_ms /= speed_mul
+        updated_map.overall_difficulty = (od0_ms - od_ms) / od_ms_step
+
+        # changing cs
+        if mods & mods.HR:
+            updated_map.circle_size *= 1.3
+        elif mods & mods.EZ:
+            updated_map.circle_size *= 0.5
+
+        updated_map.circle_size = min(updated_map.circle_size, 10)
+
+        updated_map.hp_drain = min(10.0, updated_map.hp_drain * od_ar_hp_multiplier)
+
+        return updated_map
+
