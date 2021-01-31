@@ -19,6 +19,9 @@ class BaseScore:
         user_id: id of the player who set the score
         score: the actual numerical score for the play
         username: name of the player who set the score
+        successful_hits: number of non-misses
+        map_total_hits: maximum number of non-misses
+        accuracy_dec: the player's accuracy as a decimal
     """
     def __init__(self, score_info, client, map_id):
         self.client = client
@@ -34,6 +37,10 @@ class BaseScore:
         self.user_id = int(score_info['user_id'])
         self.score = int(score_info['score'])
         self.username = score_info['username'] if "username" in score_info else self.user_id
+        self.successful_hits = self.num_50 + self.num_100 + self.num_300
+        self.map_total_hits = self.successful_hits + self.misses
+        temp_accuracy = (self.num_50 * 50 + self.num_100 * 100 + self.num_300 * 300) / (self.map_total_hits * 300) if self.map_total_hits != 0 else 0
+        self.accuracy_dec = min(1.0, max(0.0, temp_accuracy))
 
     def fetch_user(self):
         """Make an api call to get more information about user.
