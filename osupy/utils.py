@@ -124,9 +124,9 @@ class Mods(Flag):
     HT = 256
     NC = 512  # Only set along with DoubleTime. i.e: NC only gives 576
     FL = 1024
-    Autotap = 2048
+    Autoplay = 2048
     SO = 4096
-    Autopilot = 8192
+    Relax2 = 8192  # Autopilot
     PF = 16384  # Only set along with SuddenDeath. i.e: PF only gives 16416
     KEY4 = 32768
     KEY5 = 65536
