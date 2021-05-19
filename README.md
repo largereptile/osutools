@@ -24,8 +24,7 @@ from osutools.utils import Mods
 
 
 # Get that user's best scores
->> best = me.fetch_best()
->> best
+>> me.fetch_best()
 [DT score on beatmap 2659911 by 11903239, NM score on beatmap 2413216 by 11903239, ...]
 
 
