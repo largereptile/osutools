@@ -1,4 +1,4 @@
-# python wrapper for the osu! api
+# python wrapper for working with the osu! API, databases and file formats
 
 todo:
 - finish readme
