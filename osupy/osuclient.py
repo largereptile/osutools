@@ -1,10 +1,10 @@
 import requests
-from datetime import datetime
 from .user import User
 from .map import Map
 from .score import Score, RecentScore
 from .utils import *
 from .match import Match
+from .db import OsuDB, Collections, ScoresDB
 
 
 class OsuClient:
@@ -21,6 +21,9 @@ class OsuClient:
             key: The api key for your osu! application.
         """
         self.api_key = key
+        self.osu_db = None
+        self.collections_db = None
+        self.scores_db = None
 
     @staticmethod
     def _id_or_name(params: dict, username: str, user_id: int):
@@ -238,3 +241,22 @@ class OsuClient:
         """
         match_json = self._request_api("get_match", {"mp": match_id})
         return Match(match_json, self)
+
+    def get_local_map(self, md5_hash):
+        if not self.osu_db:
+            return None
+        if md5_hash in self.osu_db.maps_by_hash.keys():
+            return self.osu_db.maps_by_hash[md5_hash]
+        return None
+
+    def set_osu_db(self, path):
+        self.osu_db = OsuDB(self, path)
+        return self.osu_db
+
+    def set_collections_db(self, path):
+        self.collections_db = Collections(path, self)
+        return self.collections_db
+
+    def set_scores_db(self, path):
+        self.scores_db = ScoresDB(path, self)
+        return self.scores_db
