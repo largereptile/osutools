@@ -2,5 +2,4 @@
 
 todo:
 - finish readme
-- read osu db files
 - implement v2
