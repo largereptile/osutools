@@ -1,3 +1,7 @@
 test.py
 venv
 .idea
+build
+dist
+osu_tools.egg-info
+*.db
