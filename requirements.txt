@@ -1,2 +1,2 @@
-requests
-pyttanko
+requests>=2.25.1
+pyttanko>=2.1.0
