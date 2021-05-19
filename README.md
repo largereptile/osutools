@@ -2,4 +2,5 @@
 
 todo:
 - finish readme
-- pyttanko out of date, just implement pp calc yourself somehow
+- read osu db files
+- implement v2
