@@ -4,4 +4,3 @@ from .map import Map
 from .score import Score, RecentScore, MultiScore
 from .match import Match, Game
 from . import utils
-from .pp import get_pp
