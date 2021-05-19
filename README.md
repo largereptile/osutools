@@ -8,7 +8,7 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 
 ## Example Usage
 ### API v1
-```pycon
+```python console
 import osutools
 from osutools.utils import Mods
 
