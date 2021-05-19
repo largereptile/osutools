@@ -137,7 +137,7 @@ class Map(BaseMap):
         Returns:
             [Score]: scores matching the search requirements on this map
         """
-        return self.client.get_scores(self.beatmap_id, username=username, user_id=user_id,
+        return self.client.fetch_scores(self.beatmap_id, username=username, user_id=user_id,
                                       mode=mode, mods=mods, limit=limit)
 
     def get_pp(self, score=None, mods=Mods.NM):

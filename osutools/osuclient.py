@@ -24,6 +24,7 @@ class OsuClient:
         self.osu_db = None
         self.collections_db = None
         self.scores_db = None
+        self.osu_folder = None
 
     @staticmethod
     def _id_or_name(params: dict, username: str, user_id: int):
@@ -260,3 +261,10 @@ class OsuClient:
     def set_scores_db(self, path):
         self.scores_db = ScoresDB(path, self)
         return self.scores_db
+
+    def set_osu_folder(self, path):
+        self.osu_folder = path
+        self.scores_db = ScoresDB(f"{path}/scores.db", self)
+        self.osu_db = OsuDB(f"{path}/osu!.db")
+        self.collections_db = Collections(f"{path}/collection.db")
+
