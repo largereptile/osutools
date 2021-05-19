@@ -12,28 +12,44 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 import osutools
 from osutools.utils import Mods
 
+
 # Authenticate a client using an osu! API token
 >> osu = osutools.OsuClient("token")
 
+
 # Get information about a specific user
 >> me = osu.fetch_user(username="flubb 4")
-flubb 4
+>> me.username
+"flubb 4"
+
+
 # Get that user's best scores
->> me.fetch_best()
+>> best = me.fetch_best()
+>> best
+[DT score on beatmap 2659911 by 11903239, NM score on beatmap 2413216 by 11903239, ...]
+
 
 # Get all "recent" plays since the last time this function was called
 >> new_recent = me.fetch_new_recent()
 
+
 # Get information about a beatmap
 >> beatmap = osu.fetch_map(map_id=2788620)
+>> beatmap
+Sofia [Nyantiaz's Hard] mapped by Qiyana
 
 # Get top 50 scores on that map
->> scores = beatmap.fetch_scores()
+>> beatmap.fetch_scores()
+[HDDTHR score on beatmap 2788620 by Mikayla, HDDTHR score on beatmap 2788620 by Daprin, ...]
+
 
 # Get a specific score from that map
->> my_score = beatmap.fetch_scores(username="flubb 4", mods=(Mods.DT & Mods.HD))[0]
+>> beatmap.fetch_scores(username="flubb 4", mods=(Mods.DT & Mods.HD))[0]
+HDDT score on beatmap 2788620 by flubb 4
+
 
 # Get info about pp for the map
->> pp = beatmap.get_pp(mods=(Mods.DT & Mods.HR & Mods.HD))
+>> beatmap.get_pp(mods=(Mods.DT & Mods.HR & Mods.HD))
+36.200067887116006
 
 ```
