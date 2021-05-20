@@ -3,9 +3,8 @@ import pathlib
 import platform
 from ctypes import *
 
-from .utils import Mods
 
-
+# If you're using this on its own make sure it has oppai_files dir in the same directory
 class Oppai:
     is_64bits = sys.maxsize > 2 ** 32
     is_windows = platform.system() == "Windows"
@@ -29,9 +28,9 @@ class Oppai:
     dll.ezpp_pp.restype = c_float
 
     @classmethod
-    def calculate_pp(cls, filename, mods=Mods.NM, max_combo=None, misses=None, num_100=None, num_50=None):
+    def calculate_pp(cls, filename, mods=0, max_combo=None, misses=None, num_100=None, num_50=None):
         ez = Oppai.dll.ezpp_new()
-        cls.dll.ezpp_set_mods(ez, mods.value)
+        cls.dll.ezpp_set_mods(ez, mods)
         if max_combo is not None:
             cls.dll.ezpp_set_combo(ez, max_combo)
         if misses is not None:
@@ -41,9 +40,5 @@ class Oppai:
         cls.dll.ezpp(ez, filename.encode())
         pp_out = cls.dll.ezpp_pp(ez)
         return pp_out
-
-    @staticmethod
-    def update_oppai():
-        pass  # TODO
 
 

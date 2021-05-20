@@ -88,7 +88,7 @@ class LocalMap(BaseMap):
         """
         filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
 
-        return Oppai.calculate_pp(filename, mods=score.mods, max_combo=score.max_combo, misses=score.misses,
+        return Oppai.calculate_pp(filename, mods=score.mods.value, max_combo=score.max_combo, misses=score.misses,
                                   num_100=score.num_100, num_50=score.num_50)
 
     def get_local_scores(self):
@@ -176,10 +176,10 @@ class Map(BaseMap):
         temp_map.close()
         try:
             if score:
-                pp_out = Oppai.calculate_pp(temp_map.name, mods=score.mods, max_combo=score.max_combo,
+                pp_out = Oppai.calculate_pp(temp_map.name, mods=score.mods.value, max_combo=score.max_combo,
                                             misses=score.misses, num_100=score.num_100, num_50=score.num_50)
             else:
-                pp_out = Oppai.calculate_pp(temp_map.name, mods=mods)
+                pp_out = Oppai.calculate_pp(temp_map.name, mods=mods.value)
         finally:
             os.remove(temp_map.name)
         return pp_out
