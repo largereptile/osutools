@@ -1,11 +1,8 @@
-import struct
 # noinspection PyProtectedMember
-import tempfile
 from enum import Enum, Flag, _decompose  # yes this method is meant to be package private but Flag did everything I wanted it to apart from this
 from datetime import timedelta, datetime, timezone
-from ctypes import *
-import pathlib
-import os
+import struct
+from json import JSONEncoder
 
 
 class Mode(Enum):
@@ -281,4 +278,3 @@ def read_datetime(db):
     ticks = read_long(db)
     start = datetime(year=1, month=1, day=1, tzinfo=timezone.utc)
     return start + timedelta(microseconds=ticks*0.1)
-

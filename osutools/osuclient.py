@@ -246,8 +246,8 @@ class OsuClient:
     def get_local_map(self, md5_hash):
         if not self.osu_db:
             return None
-        if md5_hash in self.osu_db.maps_by_hash.keys():
-            return self.osu_db.maps_by_hash[md5_hash]
+        if md5_hash in self.osu_db.maps.keys():
+            return self.osu_db.maps[md5_hash]
         return None
 
     def set_osu_db(self, path):

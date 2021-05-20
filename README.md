@@ -3,7 +3,7 @@
 ## Description
 osu!-tools is a Python framework for interacting with various osu! APIs and file-types.
 - Make requests to the osu! v1 API to view user, score, map or match information.
-- Uses pyttanko to get pp information for any given score
+- Uses oppai-ng to get pp information for any given score
 - Read osu!.db, scores.db and collection.db into a Python object, and export it to json (export not actually implemented yet)
 
 ## Basic Examples
@@ -60,5 +60,51 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 
 ### Databases
 ```python console
-osu.set_osu_folder("path_to_osu_folder")
+# Set osu directory, and automatically read the databases.
+>> osu.set_osu_folder("path/to/folder")
+
+# Load the pp values for all local plays (enables faster processing of functions that use the pp value like get_best_scores_before()
+>> osu.scores_db.load_pp()
+
+# Get the average length of all of your maps
+>> avg_map_length = sum([beatmap.length for beatmap in osu.osu_db.map_list()]) / float(len(osu.osu_db.map_list()))
+>> print(timedelta(milliseconds=avg_map_length))
+
+0:02:35.320889
 ```
+
+```python console
+# Get your top 10 ranked scores before 2020
+>> names = ["flubb 4", "ito", "biglizard"] # I've changed my username a lot
+>> scores = osu.scores_db.get_best_scores_before(datetime.datetime(year=2020, month=1, day=1, tzinfo=timezone.utc), names=, ranked_only=True)
+>> for x, score in enumerate(scores[:5]):
+..    print(f"{x+1}: {score.pp} play on {score.map.song_title} [{score.map.difficulty_name}] with {score.mods}")
+
+1: 312.0760803222656 play on Snow Halation (feat. BeasttrollMC) [Reform's Extra] with DT
+2: 311.7738952636719 play on Harumachi Clover (Swing Arrangement) [Dictate Edit] [Expert] with DT
+3: 277.50250244140625 play on Yuki no Hana [Sharlo's Insane] with DT
+4: 272.4308776855469 play on Kira Kira Days [Shiawase!!] with NM
+5: 269.6291198730469 play on Natsukoi Hanabi [Insane] with DT
+```
+
+```python console
+# Export your databases to JSON
+>> osu.osu_db.export() # saves to osu_db.json by default
+>> osu.scores_db.export("~/osu/scores.json") # can give custom path
+```
+
+### PP Calculation
+```python console
+>> from osutools.utils import Mods
+>> from osutools.oppai import Oppai
+
+>> beatmap_path = "96neko - Uso no Hibana (Enjoy) [Hanabi].osu"
+>> mod_combo = Mods.HR & Mods.HD
+>> pp = Oppai.calculate_pp(beatmap_path, mods=mod_combo.value)
+>> print(pp)
+
+219.83245849609375
+```
+
+## Acknowledgements
+- https://github.com/Francesco149/oppai-ng for the PP calculation, I just used ctypes to make it python

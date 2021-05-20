@@ -1,3 +1,5 @@
+import json
+
 from .utils import *
 from .map import LocalMap
 from .score import LocalScore
@@ -14,7 +16,8 @@ class OsuDB:
             self.player_name = read_string(db)
             self.number_of_beatmaps = read_int(db)
             self.maps = {}
-            self.maps_by_hash = {}
+            self.map_dicts = {}
+            self.id_to_hash = {}
             for _ in range(self.number_of_beatmaps):
                 map_info = {}
                 if self.version < 20191106:
@@ -91,8 +94,9 @@ class OsuDB:
                 map_info["last_mod_time_2"] = read_int(db)
                 map_info["scroll_speed"] = read_byte(db)
                 mp = LocalMap(map_info, client)
-                self.maps[mp.beatmap_id] = mp
-                self.maps_by_hash[mp.md5_hash] = mp
+                self.map_dicts[mp.beatmap_id] = map_info
+                self.maps[mp.md5_hash] = mp
+                self.id_to_hash[mp.beatmap_id] = mp.md5_hash
 
     def map_list(self):
         return list(self.maps.values())
@@ -111,6 +115,17 @@ class OsuDB:
                 return local_map
         return None
 
+    def export(self, path=None):
+        if not path:
+            path = "osu_db.json"
+        db_dict = self.__dict__.copy()
+        db_dict.pop("client")
+        db_dict.pop("maps")
+        db_dict.pop("id_to_hash")
+        json_str = json.dumps(db_dict, sort_keys=True, indent=4, default=str)
+        with open(path, "w") as f:
+            f.write(json_str)
+
 
 class Collections:
     def __init__(self, client, path):
@@ -127,6 +142,15 @@ class Collections:
                     collection.append(read_string(db))
                 self.collections[name] = collection
 
+    def export(self, path=None):
+        if not path:
+            path = "collection.json"
+        db_dict = self.__dict__.copy()
+        db_dict.pop("client")
+        json_str = json.dumps(db_dict, sort_keys=True, indent=4, default=str)
+        with open(path, "w") as f:
+            f.write(json_str)
+
 
 class ScoresDB:
     def __init__(self, client, path):
@@ -135,11 +159,14 @@ class ScoresDB:
             self.version = read_int(db)
             no_maps = read_int(db)
             self.maps = {}
+            self.score_by_map = {}
             for _ in range(no_maps):
                 md5 = read_string(db)
                 scores = []
+                score_dict = []
                 no_scores = read_int(db)
                 for _ in range(no_scores):
+
                     score_info = {"mode": read_byte(db), "version": read_int(db), "map_hash": read_string(db),
                                   "username": read_string(db), "replay_hash": read_string(db),
                                   "count300": read_short(db), "count100": read_short(db), "count50": read_short(db),
@@ -154,7 +181,9 @@ class ScoresDB:
                         score_info["target_practice_acc"] = read_double(db)
 
                     scores.append(LocalScore(score_info, client, score_info["replay_hash"]))
-
+                    score_dict.append(score_info)
+                if score_dict:
+                    self.score_by_map[scores[0].map.beatmap_id] = score_dict
                 self.maps[md5] = scores
 
     def load_pp(self):
@@ -198,3 +227,13 @@ class ScoresDB:
                 pass
         best_scores.sort(key=lambda x: x.pp, reverse=True)
         return best_scores[:100]
+
+    def export(self, path=None):
+        if not path:
+            path = "scores.json"
+        db_dict = self.__dict__.copy()
+        db_dict.pop("client")
+        db_dict.pop("maps")
+        json_str = json.dumps(db_dict, sort_keys=True, indent=4, default=str)
+        with open(path, "w") as f:
+            f.write(json_str)

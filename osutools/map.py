@@ -92,7 +92,7 @@ class LocalMap(BaseMap):
                                   num_100=score.num_100, num_50=score.num_50)
 
     def get_local_scores(self):
-        if self.md5_hash in self.client.scores_db.maps:
+        if self.md5_hash in self.client.scores_db.maps.keys():
             return self.client.scores_db.maps[self.md5_hash]
         return []
 
