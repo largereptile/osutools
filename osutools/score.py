@@ -135,6 +135,7 @@ class LocalScore(BaseScore):
     def __init__(self, score_info, client, replay_hash):
         super().__init__(score_info, client)
         self.map_hash = score_info["map_hash"]
+        self.map = self.client.get_local_map(self.map_hash)
         self.md5_hash = replay_hash
         self.mods = Mods(score_info["mods"])
         self.timestamp = score_info["timestamp"]

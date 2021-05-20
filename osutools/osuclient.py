@@ -264,7 +264,7 @@ class OsuClient:
 
     def set_osu_folder(self, path):
         self.osu_folder = path
-        self.scores_db = ScoresDB(self, f"{path}/scores.db")
         self.osu_db = OsuDB(self, f"{path}/osu!.db")
+        self.scores_db = ScoresDB(self, f"{path}/scores.db")
         self.collections_db = Collections(self, f"{path}/collection.db")
 

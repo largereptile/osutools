@@ -157,10 +157,22 @@ class ScoresDB:
 
                 self.maps[md5] = scores
 
-    def get_scores_before(self, timestamp):
+    def load_pp(self):
+        for md5, scores in self.maps.items():
+            for score in scores:
+                score.get_pp()
+
+    def get_scores_before(self, timestamp, names=None, ranked_only=False):
         before_timestamp = {}
         for md5, scores in self.maps.items():
+            if ranked_only:
+                if ranked_only:
+                    beatmap = self.client.get_local_map(md5)
+                    if beatmap.approval != Approval.RANKED:
+                        continue
             scores_before = list(filter(lambda x: x.timestamp < timestamp, scores))
+            if names:
+                scores_before = list(filter(lambda x: x.username in names, scores_before))
             if scores_before:
                 before_timestamp[md5] = scores_before
         return before_timestamp
@@ -168,21 +180,17 @@ class ScoresDB:
     def get_best_scores_before(self, timestamp, names=None, ranked_only=False):
         if not names:
             names = [self.client.osu_db.player_name]
-        all_scores = self.get_scores_before(timestamp)
+        all_scores = self.get_scores_before(timestamp, names=names, ranked_only=ranked_only)
         best_scores = []
         for md5, scores in all_scores.items():
-            if ranked_only:
-                beatmap = self.client.get_local_map(md5)
-                if beatmap.approval != Approval.RANKED:
-                    continue
             try:
-                scores = list(filter(lambda x: x.username in names, scores))
                 scores.sort(key=lambda x: x.score, reverse=True)
                 if not scores:
                     continue
                 best = scores[0]
-                pp = best.get_pp()
-                if pp:
+                if not best.pp:
+                    best.get_pp()
+                if best.pp:
                     best_scores.append(best)
             except NotImplementedError:
                 pass

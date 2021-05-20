@@ -10,7 +10,7 @@ class BaseMap:
         self.client = client
         self.song_title = map_info['title']
         self.artist = map_info['artist']
-        self.length = float(map_info['total_length'])
+        self.length = float(map_info['total_length']) if float(map_info['total_length']) != 4294967295 else 0
         self.difficulty_name = map_info['version']
         self.mode = Mode(int(map_info['mode']))
         self.beatmap_id = int(map_info['beatmap_id'])
