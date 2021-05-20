@@ -70,9 +70,12 @@ class Score(BaseScore):
         self.timestamp = datetime.strptime(score_info['date'], "%Y-%m-%d %H:%M:%S")
         self.mods = Mods(int(score_info['enabled_mods']))
         self.rank = score_info['rank']
-        self.pp = float(score_info['pp'])
+        self.pp = float(score_info['pp']) if score_info['pp'] else 0
         self.replay_available = score_info['replay_available'] == "1"
         super().__init__(score_info, client)
+
+    def fetch_map(self):
+        return self.client.fetch_map(map_id=self.map_id)
 
     def __repr__(self):
         return f"{self.mods} score on beatmap {self.map_id} by {self.username}"
@@ -131,10 +134,16 @@ class MultiScore(BaseScore):
 class LocalScore(BaseScore):
     def __init__(self, score_info, client, replay_hash):
         super().__init__(score_info, client)
+        self.map_hash = score_info["map_hash"]
         self.md5_hash = replay_hash
         self.mods = Mods(score_info["mods"])
-        self.timestamp = score_info["timestamp"]  # todo make datetime
+        self.timestamp = score_info["timestamp"]
         self.online_id = score_info["online_id"]
+        self.pp = None
+
+    def get_pp(self):
+        self.pp = self.client.get_local_map(self.map_hash).get_pp(self)
+        return self.pp
 
     def __repr__(self):
         return f"{self.mods} score by {self.username}"

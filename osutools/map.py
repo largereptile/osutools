@@ -1,7 +1,8 @@
+import tempfile
 import urllib.request
 import pyttanko
-
 from .utils import *
+from .oppai import Oppai
 
 
 class BaseMap:
@@ -75,6 +76,26 @@ class LocalMap(BaseMap):
 
         super().__init__(map_info, client)
 
+    def get_pp(self, score):
+        """
+        Return the maximum PP value for the map with the supplied mods, or the PP for a given score on the map
+        Args:
+            score: Score to calculate PP for
+            mods: enum representing mods to filter by
+
+        Returns:
+            float: Maximum PP for the map.
+        """
+        filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
+
+        return Oppai.calculate_pp(filename, mods=score.mods, max_combo=score.max_combo, misses=score.misses,
+                                  num_100=score.num_100, num_50=score.num_50)
+
+    def get_local_scores(self):
+        if self.md5_hash in self.client.scores_db.maps:
+            return self.client.scores_db.maps[self.md5_hash]
+        return []
+
     def get_online_map(self):
         return self.client.fetch_map(self.beatmap_id)
 
@@ -138,7 +159,7 @@ class Map(BaseMap):
             [Score]: scores matching the search requirements on this map
         """
         return self.client.fetch_scores(self.beatmap_id, username=username, user_id=user_id,
-                                      mode=mode, mods=mods, limit=limit)
+                                        mode=mode, mods=mods, limit=limit)
 
     def get_pp(self, score=None, mods=Mods.NM):
         """
@@ -150,21 +171,15 @@ class Map(BaseMap):
         Returns:
             float: Maximum PP for the map.
         """
-        file = urllib.request.urlopen(self.download_url)
-        map_input = []
-        for line in file:
-            map_input.append(line.decode().strip())
-        p = pyttanko.parser()
-        beatmap = p.map(map_input)
-        if score:
-            stars = pyttanko.diff_calc().calc(beatmap, mods=score.mods.value)
-            pp_out, _, _, _, _ = pyttanko.ppv2(stars.aim, stars.speed, bmap=beatmap, mods=score.mods.value,
-                                               max_combo=score.max_combo, n300=score.num_300, n100=score.num_100,
-                                               n50=score.num_50, nmiss=score.misses)
-
-        else:
-            stars = pyttanko.diff_calc().calc(beatmap, mods=mods.value)
-            pp_out, _, _, _, _ = pyttanko.ppv2(stars.aim, stars.speed, bmap=beatmap, mods=mods.value,
-                                               max_combo=self.max_combo, n300=self.total_objects, n100=0,
-                                               n50=0, nmiss=0)
+        temp_map = tempfile.NamedTemporaryFile(delete=False)
+        temp_map.write(urllib.request.urlopen(self.download_url).read())
+        temp_map.close()
+        try:
+            if score:
+                pp_out = Oppai.calculate_pp(temp_map.name, mods=score.mods, max_combo=score.max_combo,
+                                            misses=score.misses, num_100=score.num_100, num_50=score.num_50)
+            else:
+                pp_out = Oppai.calculate_pp(temp_map.name, mods=mods)
+        finally:
+            os.remove(temp_map.name)
         return pp_out

@@ -10,7 +10,7 @@ class OsuDB:
             self.version = read_int(db)
             self.folder_count = read_int(db)
             self.account_unlocked = read_bool(db)
-            self.date_unlocked = read_long(db)
+            self.date_unlocked = read_datetime(db)
             self.player_name = read_string(db)
             self.number_of_beatmaps = read_int(db)
             self.maps = {}
@@ -36,7 +36,7 @@ class OsuDB:
                 map_info["count_normal"] = read_short(db)
                 map_info["count_slider"] = read_short(db)
                 map_info["count_spinner"] = read_short(db)
-                map_info["last_mod_time"] = read_long(db)
+                map_info["last_mod_time"] = read_datetime(db)
                 if self.version < 20140609:
                     map_info["diff_approach"] = int(read_byte(db))
                     map_info["diff_size"] = int(read_byte(db))
@@ -94,6 +94,9 @@ class OsuDB:
                 self.maps[mp.beatmap_id] = mp
                 self.maps_by_hash[mp.md5_hash] = mp
 
+    def map_list(self):
+        return list(self.maps.values())
+
     def search_maps(self, name: str):
         results = []
         name = name.lower()
@@ -110,7 +113,7 @@ class OsuDB:
 
 
 class Collections:
-    def __init__(self, path, client):
+    def __init__(self, client, path):
         self.client = client
         with open(path, "rb") as db:
             self.version = read_int(db)
@@ -126,7 +129,7 @@ class Collections:
 
 
 class ScoresDB:
-    def __init__(self, path, client):
+    def __init__(self, client, path):
         self.client = client
         with open(path, "rb") as db:
             self.version = read_int(db)
@@ -137,22 +140,14 @@ class ScoresDB:
                 scores = []
                 no_scores = read_int(db)
                 for _ in range(no_scores):
-                    score_info = {"mode": read_byte(db), "version": read_int(db)}
-                    map_md5 = read_string(db)
-                    score_info["username"] = read_string(db)
-                    score_info["replay_hash"] = read_string(db)
-                    score_info["count300"] = read_short(db)
-                    score_info["count100"] = read_short(db)
-                    score_info["count50"] = read_short(db)
-                    score_info["countgeki"] = read_short(db)
-                    score_info["countkatu"] = read_short(db)
-                    score_info["countmiss"] = read_short(db)
-                    score_info["score"] = read_int(db)
-                    score_info["maxcombo"] = read_short(db)
-                    score_info["perfect"] = read_bool(db)
-                    score_info["mods"] = read_int(db)
+                    score_info = {"mode": read_byte(db), "version": read_int(db), "map_hash": read_string(db),
+                                  "username": read_string(db), "replay_hash": read_string(db),
+                                  "count300": read_short(db), "count100": read_short(db), "count50": read_short(db),
+                                  "countgeki": read_short(db), "countkatu": read_short(db), "countmiss": read_short(db),
+                                  "score": read_int(db), "maxcombo": read_short(db), "perfect": read_bool(db),
+                                  "mods": read_int(db)}
                     read_string(db)
-                    score_info["timestamp"] = read_long(db)
+                    score_info["timestamp"] = read_datetime(db)
                     read_int(db)
                     score_info["online_id"] = read_long(db)
                     if Mods.Target & Mods(score_info["mods"]):
@@ -162,3 +157,36 @@ class ScoresDB:
 
                 self.maps[md5] = scores
 
+    def get_scores_before(self, timestamp):
+        before_timestamp = {}
+        for md5, scores in self.maps.items():
+            scores_before = list(filter(lambda x: x.timestamp < timestamp, scores))
+            if scores_before:
+                before_timestamp[md5] = scores_before
+        return before_timestamp
+
+    def get_best_scores_before(self, timestamp, names=None, ranked_only=False):
+        if not names:
+            names = [self.client.osu_db.player_name]
+        all_scores = self.get_scores_before(timestamp)
+        best_scores = []
+        for md5, scores in all_scores.items():
+            if ranked_only:
+                beatmap = self.client.get_local_map(md5)
+                if beatmap.approval != Approval.RANKED:
+                    continue
+            try:
+                scores = list(filter(lambda x: x.username in names, scores))
+                scores.sort(key=lambda x: x.score, reverse=True)
+                if not scores:
+                    continue
+                best = scores[0]
+                pp = best.get_pp()
+                if pp:
+                    best_scores.append(best)
+            except NotImplementedError:
+                pass
+            except ValueError:
+                pass
+        best_scores.sort(key=lambda x: x.pp, reverse=True)
+        return best_scores[:100]
