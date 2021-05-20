@@ -6,7 +6,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='osu!tools',
-    version='0.1.4',
+    version='0.2.0',
     packages=['osutools'],
     url='https://github.com/largereptile/osutools',
     license='MIT',
@@ -15,5 +15,5 @@ setup(
     description='A python wrapper for working with the osu! API, databases and file formats',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    install_requires=['requests>=2.25.1', 'pyttanko>=2.1.0']
+    install_requires=['requests>=2.25.1']
 )
