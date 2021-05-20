@@ -7,13 +7,16 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 - Read osu!.db, scores.db and collection.db into a Python object, and export it to json (export not actually implemented yet)
 
 ## Basic Examples
-### API v1
+### Setup
 ```python console
 >> import osutools
 
 # Authenticate a client using an osu! API token
 >> osu = osutools.OsuClient("token")
+```
 
+### API v1
+```python console
 # Get user
 >> me = osu.fetch_user(username="flubb 4")
 >> print(f"{me} | {me.pp}pp | #{me.rank} Global")
@@ -49,4 +52,9 @@ Sofia [Nyantiaz's Hard] | Clairo | Qiyana
 >> print(f"Best Score: {leaderboard[0]}\nMy Score: {my_score}")
 Best Score: HDDTHR score on beatmap 2788620 by Mikayla
 My Score: HDDT score on beatmap 2788620 by flubb 4
+```
+
+### Databases
+```python console
+osu.set_osu_folder("path_to_osu_folder")
 ```
