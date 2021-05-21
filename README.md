@@ -11,6 +11,11 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 - Uses oppai-ng to get pp information for any given score
 - Read osu!.db, scores.db and collection.db into a Python object, and export it to json (export not actually implemented yet)
 
+## Installation
+```bash
+pip install osu-tools
+```
+
 ## Basic Examples
 ### Setup
 ```python console
