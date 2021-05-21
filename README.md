@@ -1,6 +1,8 @@
 # osu!-tools for python
 
-[![PyPI download total](https://img.shields.io/pypi/dt/ansicolortags.svg)](https://pypi.org/project/osu-tools/)
+[![PyPI download month](https://img.shields.io/pypi/dm/ansicolortags.svg)](https://pypi.org/project/osu-tools/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.org/project/osu-tools/)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/largereptile/osutools/blob/main/LICENSE.md)
 
 ## Description
 osu!-tools is a Python framework for interacting with various osu! APIs and file-types.
