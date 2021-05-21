@@ -1,5 +1,7 @@
 # osu!-tools for python
 
+[![PyPI download total](https://img.shields.io/pypi/dt/ansicolortags.svg)](https://pypi.org/project/osu-tools/)
+
 ## Description
 osu!-tools is a Python framework for interacting with various osu! APIs and file-types.
 - Make requests to the osu! v1 API to view user, score, map or match information.
