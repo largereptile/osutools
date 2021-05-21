@@ -16,19 +16,19 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 ```
 
 ### API v1
+##### Get User
 ```python console
-# Get user
 >> me = osu.fetch_user(username="flubb 4")
 >> print(f"{me} | {me.pp}pp | #{me.rank} Global")
 
 flubb 4 | 7507.3pp | #8765 Global
 ```
 
+##### Get best 5 scores + show information
 ```python console
-# Get best 5 scores
 >> best = me.fetch_best()[:5]
 
-# Show information about scores
+
 >> for score in best:
 ..  beatmap = score.fetch_map()
 ..  print(f"{score.pp}pp | {score.score} | {beatmap} | {score.mods}")
@@ -40,16 +40,16 @@ flubb 4 | 7507.3pp | #8765 Global
 371.206pp | 6547546 | One by One [Sotarks' Rampage] mapped by Elinor | HR
 ```
 
+##### Get information about a specific beatmap
 ```python console
-# Get information about a specific beatmap
 >> beatmap = osu.fetch_map(map_id=2788620)
 >> print(f"{beatmap.song_title} [{beatmap.difficulty_name}] | {beatmap.artist} | {beatmap.creator_name}")
 
 Sofia [Nyantiaz's Hard] | Clairo | Qiyana
 ```
 
+##### Get leaderboards and submitted scores for the beatmap
 ```python console
-# Get leaderboards and submitted scores for the beatmap
 >> leaderboard = beatmap.fetch_scores()
 >> my_score = beatmap.fetch_scores(username="flubb 4")[0]
 >> print(f"Best Score: {leaderboard[0]}\nMy Score: {my_score}")
@@ -59,22 +59,24 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 ```
 
 ### Databases
+##### Set osu directory, and automatically read the databases.
 ```python console
-# Set osu directory, and automatically read the databases.
 >> osu.set_osu_folder("path/to/folder")
 
 # Load the pp values for all local plays (enables faster processing of functions that use the pp value like get_best_scores_before()
 >> osu.scores_db.load_pp()
+```
 
-# Get the average length of all of your maps
+##### Get the average length of all of your maps
+```python console
 >> avg_map_length = sum([beatmap.length for beatmap in osu.osu_db.map_list()]) / float(len(osu.osu_db.map_list()))
 >> print(timedelta(milliseconds=avg_map_length))
 
 0:02:35.320889
 ```
 
+##### Get your top 10 ranked scores before 2020
 ```python console
-# Get your top 10 ranked scores before 2020
 >> names = ["flubb 4", "ito", "biglizard"] # I've changed my username a lot
 >> scores = osu.scores_db.get_best_scores_before(datetime.datetime(year=2020, month=1, day=1, tzinfo=timezone.utc), names=, ranked_only=True)
 >> for x, score in enumerate(scores[:5]):
@@ -87,13 +89,14 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 5: 269.6291198730469 play on Natsukoi Hanabi [Insane] with DT
 ```
 
+##### Export your databases to JSON
 ```python console
-# Export your databases to JSON
 >> osu.osu_db.export() # saves to osu_db.json by default
 >> osu.scores_db.export("~/osu/scores.json") # can give custom path
 ```
 
 ### PP Calculation
+##### Get pp for an SS on a given map with HDHR
 ```python console
 >> from osutools.utils import Mods
 >> from osutools.oppai import Oppai
