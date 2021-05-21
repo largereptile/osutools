@@ -119,5 +119,17 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 219.83245849609375
 ```
 
+- Get pp for an online map
+```python console
+>> beatmap = osu.fetch_map(1255495)
+>> pp = Oppai.calculate_pp_from_url(beatmap.download_url, mods=mod_combo.value, accuracy=99.5)
+>> print(pp)
+
+311.27484130859375
+```
+## Todo
+- api v2
+- probably some kind of internal ratelimit prevention?
+
 ## Acknowledgements
 - https://github.com/Francesco149/oppai-ng for the PP calculation, I just used ctypes to make it python
