@@ -6,7 +6,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='osu!tools',
-    version='0.2.1',
+    version='0.2.2',
     packages=['osutools'],
     url='https://github.com/largereptile/osutools',
     license='MIT',
@@ -16,10 +16,5 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=['requests>=2.25.1'],
-    classifiers=[
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-    ]
+    python_requires='>=3'
 )
