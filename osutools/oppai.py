@@ -1,4 +1,5 @@
 import sys
+import pkg_resources
 import pathlib
 import platform
 from ctypes import *
@@ -16,8 +17,7 @@ class Oppai:
         filename = "liboppai.so"
     else:
         filename = "liboppaii686.so"
-    path = pathlib.Path(__file__).parent / "oppai_files" / filename
-    dll = CDLL(str(path))
+    dll = CDLL(pkg_resources.resource_filename('osutools', f'oppai_files/{filename}'))
     dll.ezpp_new.restype = c_void_p
     dll.ezpp_set_mods.argtypes = (c_void_p, c_int)
     dll.ezpp_set_combo.argtypes = (c_void_p, c_int)

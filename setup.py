@@ -8,6 +8,9 @@ setup(
     name='osu!tools',
     version='0.2.2',
     packages=['osutools'],
+    package_data={
+        'osutools': ["oppai_files/*"]
+    },
     url='https://github.com/largereptile/osutools',
     license='MIT',
     author='largereptile',
