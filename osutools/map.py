@@ -1,6 +1,6 @@
 import tempfile
 import urllib.request
-import pyttanko
+import os
 from .utils import *
 from .oppai import Oppai
 
@@ -171,15 +171,7 @@ class Map(BaseMap):
         Returns:
             float: Maximum PP for the map.
         """
-        temp_map = tempfile.NamedTemporaryFile(delete=False)
-        temp_map.write(urllib.request.urlopen(self.download_url).read())
-        temp_map.close()
-        try:
-            if score:
-                pp_out = Oppai.calculate_pp(temp_map.name, mods=score.mods.value, max_combo=score.max_combo,
-                                            misses=score.misses, num_100=score.num_100, num_50=score.num_50)
-            else:
-                pp_out = Oppai.calculate_pp(temp_map.name, mods=mods.value)
-        finally:
-            os.remove(temp_map.name)
-        return pp_out
+        if not self.download_unavailable:
+            pp_out = Oppai.calculate_pp_from_url(self.download_url, mods=score.mods.value, max_combo=score.max_combo,
+                                                 misses=score.misses, num_100=score.num_100, num_50=score.num_50)
+            return pp_out
