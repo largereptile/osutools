@@ -131,6 +131,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 - api v2
 - probably some kind of internal ratelimit prevention?
 - tests 👀
+- discord integration utilities?
 
 ## Acknowledgements
 - https://github.com/Francesco149/oppai-ng for the PP calculation, I just used ctypes to make it python
