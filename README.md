@@ -11,19 +11,23 @@ osu!-tools is a Python framework for interacting with various osu! APIs and file
 - Uses oppai-ng to get pp information for any given score
 - Read osu!.db, scores.db and collection.db into a Python object, and export it to json
 
+
 # Installation
 ```bash
 pip install osu-tools
 ```
+
 
 # Basic Examples
 ## API v1
 ```python console
 >> import osutools
 
+
 # Authenticate a client using an osu! API token
 >> osu = osutools.OsuClient("token")
 ```
+
 ### Get User
 ```python console
 >> me = osu.fetch_user(username="flubb 4")
@@ -31,6 +35,7 @@ pip install osu-tools
 
 flubb 4 | 7507.3pp | #8765 Global
 ```
+
 
 ### Get best 5 scores + show information
 ```python console
@@ -48,6 +53,7 @@ flubb 4 | 7507.3pp | #8765 Global
 371.206pp | 6547546 | One by One [Sotarks' Rampage] mapped by Elinor | HR
 ```
 
+
 ### Get information about a specific beatmap
 ```python console
 >> beatmap = osu.fetch_map(map_id=2788620)
@@ -55,6 +61,7 @@ flubb 4 | 7507.3pp | #8765 Global
 
 Sofia [Nyantiaz's Hard] | Clairo | Qiyana
 ```
+
 
 ### Get leaderboards and submitted scores for the beatmap
 ```python console
@@ -66,7 +73,9 @@ Best Score: HDDTHR score on beatmap 2788620 by Mikayla
 My Score: HDDT score on beatmap 2788620 by flubb 4
 ```
 
+
 ## Databases
+
 ### Set osu directory, and automatically read the databases.
 ```python console
 >> osu.set_osu_folder("path/to/folder")
@@ -75,6 +84,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 >> osu.scores_db.load_pp()
 ```
 
+
 ### Get the average length of all of your maps
 ```python console
 >> avg_map_length = sum([beatmap.length for beatmap in osu.osu_db.map_list()]) / float(len(osu.osu_db.map_list()))
@@ -82,6 +92,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 
 0:02:35.320889
 ```
+
 
 ### Get your top 10 ranked scores before 2020
 ```python console
@@ -97,13 +108,16 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 5: 269.6291198730469 play on Natsukoi Hanabi [Insane] with DT
 ```
 
+
 ### Export your databases to JSON
 ```python console
 >> osu.osu_db.export() # saves to osu_db.json by default
 >> osu.scores_db.export("~/osu/scores.json") # can give custom path
 ```
 
+
 ## PP Calculation
+
 ### Get pp for an SS on a given map with HDHR
 ```python console
 >> from osutools.utils import Mods
@@ -117,6 +131,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 219.83245849609375
 ```
 
+
 ### Get pp for an online map
 ```python console
 >> beatmap = osu.fetch_map(1255495)
@@ -125,11 +140,13 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 
 311.27484130859375
 ```
+
 # Todo
 - api v2
 - probably some kind of internal ratelimit prevention?
 - tests 👀
 - discord integration utilities?
+
 
 # Acknowledgements
 - https://github.com/Francesco149/oppai-ng for the PP calculation, I just used ctypes to make it python
