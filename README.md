@@ -146,6 +146,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 - probably some kind of internal ratelimit prevention?
 - tests 👀
 - discord integration utilities?
+- download beatmap
 
 
 # Acknowledgements
