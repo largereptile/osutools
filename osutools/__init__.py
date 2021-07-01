@@ -5,3 +5,4 @@ from .score import Score, RecentScore, MultiScore, LocalScore
 from .match import Match, Game
 from .db import OsuDB, ScoresDB, Collections
 from . import utils
+from . import exceptions

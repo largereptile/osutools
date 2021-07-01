@@ -5,6 +5,7 @@ from .score import Score, RecentScore
 from .utils import *
 from .match import Match
 from .db import OsuDB, Collections, ScoresDB
+from .exceptions import *
 
 
 class OsuClient:
@@ -57,7 +58,12 @@ class OsuClient:
         """
         params['k'] = self.api_key
         r = requests.get(f"https://osu.ppy.sh/api/{url}", params=params)
-        return r.json() if r.json() else None
+        response_json = r.json()
+        if response_json:
+            if "error" in response_json.keys():
+                raise RequestException(f"{response_json['error']}")
+        else:
+            return None
 
     def fetch_user(self, user_id: int = None, username: str = None, mode: Mode = Mode.STANDARD):
         """Make an api request to get information about a given user.
