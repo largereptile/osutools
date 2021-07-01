@@ -143,6 +143,7 @@ My Score: HDDT score on beatmap 2788620 by flubb 4
 
 # Todo
 - api v2
+- better errors
 - probably some kind of internal ratelimit prevention?
 - tests 👀
 - discord integration utilities?
