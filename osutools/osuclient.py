@@ -60,8 +60,10 @@ class OsuClientV1:
         r = requests.get(f"https://osu.ppy.sh/api/{url}", params=params)
         response_json = r.json()
         if response_json:
-            if "error" in response_json.keys():
+            if isinstance(response_json, dict) and "error" in response_json.keys():
                 raise RequestException(f"{response_json['error']}")
+            else:
+                return response_json
         else:
             return None
 
