@@ -1,3 +1,4 @@
+import time
 import requests
 from .user import User
 from .map import Map
@@ -276,3 +277,32 @@ class OsuClientV1:
         self.scores_db = ScoresDB(self, f"{path}/scores.db")
         self.collections_db = Collections(self, f"{path}/collection.db")
 
+
+class OsuClientV2:
+    def __init__(self, client_id, client_secret) -> None:
+        self.id = client_id
+        self.secret = client_secret
+        self._get_auth_token()
+
+    def _get_auth_token(self) -> None:
+        params = {"client_id": self.id, "client_secret": self.secret,
+                "grant_type": "client_credentials", "scope": "public"}
+        r = requests.post("https://osu.ppy.sh/oauth/token", data=params)
+        if r.status_code == 401:
+            raise RequestException("Invalid Credentials Given")
+        response = r.json()
+        self.refresh_time = time.time()
+        self.token_type = response["token_type"]
+        self.expires_in = response["expires_in"]
+        self.access_token = response["access_token"]
+
+    def auth_token_valid(self) -> bool:
+        return time.time() < self.refresh_time + self.expires_in
+
+    def _request_api(self, url: str, params: dict):
+        if not self.auth_token_valid():
+            self._get_auth_token()
+        headers = {"Authorization": f"Bearer {self.access_token}"}
+        r = requests.get(f"https://osu.ppy.sh/api/v2/{url}", headers=headers, params=params)
+        response = r.json()
+        return response
