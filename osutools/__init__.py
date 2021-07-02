@@ -1,4 +1,4 @@
-from .osuclient import OsuClient
+from .osuclient import OsuClientV1
 from .user import User
 from .map import Map, LocalMap
 from .score import Score, RecentScore, MultiScore, LocalScore

@@ -1,6 +1,6 @@
 import osutools
 
-osu = osutools.OsuClient("token")
+osu = osutools.OsuClientV1("token")
 
 # Get user
 me = osu.fetch_user(username="flubb 4")

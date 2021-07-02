@@ -8,8 +8,8 @@ from .db import OsuDB, Collections, ScoresDB
 from .exceptions import *
 
 
-class OsuClient:
-    """Client object for interacting with the osu! api.
+class OsuClientV1:
+    """Client object for interacting with v1 of the osu! api.
 
     Attributes:
         api_key (str): the api key for your osu! application
