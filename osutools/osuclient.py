@@ -1,5 +1,7 @@
+from osutools.mapv2 import MapV2, MapCompactV2
 import time
 import requests
+import json
 from .user import User
 from .map import Map
 from .score import Score, RecentScore
@@ -299,10 +301,37 @@ class OsuClientV2:
     def auth_token_valid(self) -> bool:
         return time.time() < self.refresh_time + self.expires_in
 
-    def _request_api(self, url: str, params: dict):
+    def _request_api(self, url: str, params: dict={}):
         if not self.auth_token_valid():
             self._get_auth_token()
         headers = {"Authorization": f"Bearer {self.access_token}"}
         r = requests.get(f"https://osu.ppy.sh/api/v2/{url}", headers=headers, params=params)
-        response = r.json()
-        return response
+        if r.status_code == 200:
+            return r.json()
+        else:
+            r.raise_for_status()
+    
+    def lookup_beatmap(self, checksum: str = None, map_id: int = None, filename: str = None):
+        params = {}
+        if checksum:
+            params["checksum"] = checksum
+        if map_id:
+            params["id"] = map_id
+        if filename:
+            params["filename"] = filename
+        
+        if not (checksum or map_id or filename):
+            raise RequestException("No arguments given")
+        
+        response = self._request_api("beatmaps/lookup", params=params)
+        if "accuracy" in response.keys():
+            return MapV2(self, response)
+        else:
+            return MapCompactV2(self, response)
+
+    def get_beatmap(self, map_id: int):
+        response = self._request_api(f"beatmaps/{map_id}")
+        if "accuracy" in response.keys():
+            return MapV2(self, response)
+        else:
+            return MapCompactV2(self, response)
