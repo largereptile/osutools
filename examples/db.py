@@ -2,7 +2,7 @@ import osutools
 import datetime
 from datetime import timezone, timedelta
 
-osu = osutools.OsuClient("token")
+osu = osutools.OsuClientV1("token")
 
 # Set osu directory, and automatically read the databases.
 osu.set_osu_folder("C:\\Users\\harry\\AppData\\Local\\osu!")

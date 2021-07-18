@@ -2,7 +2,7 @@ import osutools
 import discord
 from discord.ext import commands
 
-osu = osutools.OsuClient("token")
+osu = osutools.OsuClientV1("token")
 bot = commands.Bot(command_prefix="!")
 
 

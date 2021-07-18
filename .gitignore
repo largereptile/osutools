@@ -5,4 +5,5 @@ build
 dist
 osu_tools.egg-info
 *.db
+__pycache__
 .env
