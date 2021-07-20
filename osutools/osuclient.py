@@ -1,4 +1,5 @@
 import requests
+from pathlib import Path
 from .user import User
 from .map import Map
 from .score import Score, RecentScore
@@ -271,8 +272,8 @@ class OsuClientV1:
         return self.scores_db
 
     def set_osu_folder(self, path):
-        self.osu_folder = path
-        self.osu_db = OsuDB(self, f"{path}/osu!.db")
-        self.scores_db = ScoresDB(self, f"{path}/scores.db")
-        self.collections_db = Collections(self, f"{path}/collection.db")
+        self.osu_folder = Path(path)
+        self.osu_db = OsuDB(self, self.osu_folder / "osu!.db")
+        self.scores_db = ScoresDB(self,  self.osu_folder / "scores.db")
+        self.collections_db = Collections(self,  self.osu_folder / "collection.db")
 

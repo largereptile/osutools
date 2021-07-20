@@ -12,7 +12,7 @@ token = os.environ["OSU_V1_TOKEN"]
 
 @pytest.fixture(scope="module", autouse=True)
 def load_client():
-    client = osutools.OsuClient(token)
+    client = osutools.OsuClientV1(token)
     yield client
 
 
@@ -50,3 +50,4 @@ def test_fetch_user_recent(load_client):
     scores = load_client.fetch_user_recent(user_id=11903239)
     for score in scores:
         assert score.timestamp > (datetime.datetime.now() - datetime.timedelta(days=1))
+

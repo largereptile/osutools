@@ -86,7 +86,8 @@ class LocalMap(BaseMap):
         Returns:
             float: Maximum PP for the map.
         """
-        filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
+        filename = self.client.osu_folder / "Songs" / self.folder_name.strip() / self.filename
+        # filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
 
         return Oppai.calculate_pp(filename, mods=score.mods.value, max_combo=score.max_combo, misses=score.misses,
                                   num_100=score.num_100, num_50=score.num_50)
