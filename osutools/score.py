@@ -143,7 +143,9 @@ class LocalScore(BaseScore):
         self.pp = None
 
     def get_pp(self):
-        self.pp = self.client.get_local_map(self.map_hash).get_pp(self)
+        pp_map = self.client.get_local_map(self.map_hash)
+        if pp_map:
+            self.pp = pp_map.get_pp(self)
         return self.pp
 
     def __repr__(self):

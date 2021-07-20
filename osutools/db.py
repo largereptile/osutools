@@ -182,8 +182,9 @@ class ScoresDB:
 
                     scores.append(LocalScore(score_info, client, score_info["replay_hash"]))
                     score_dict.append(score_info)
-                if score_dict:
-                    self.score_by_map[scores[0].map.beatmap_id] = score_dict
+                if score_dict and scores[0].map:
+                    map_id = scores[0].map.beatmap_id
+                    self.score_by_map[map_id] = score_dict
                 self.maps[md5] = scores
 
     def load_pp(self):
