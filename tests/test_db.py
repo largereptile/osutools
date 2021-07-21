@@ -16,10 +16,6 @@ is_github = os.environ["IS_GITHUB"]
 def load_client():
     client = osutools.OsuClientV1(token)
     path = Path("test_files") / "osu"
-    # if is_github == "0":
-    #     path = Path("test_files") / "osu"
-    # else:
-    #     path = Path("/github") / "workspace" / "test_files" / "osu"
     client.set_osu_folder(path)
     yield client
 
