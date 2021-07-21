@@ -8,3 +8,5 @@ osu_tools.egg-info
 __pycache__
 .env
 tests/test_files
+test_files.zip
+*.osu
