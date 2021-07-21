@@ -4,6 +4,7 @@ import tempfile
 import urllib.request
 import os
 import platform
+import pathlib
 from ctypes import *
 
 
@@ -51,7 +52,7 @@ class Oppai:
             cls.dll.ezpp_set_accuracy_percent(ez, accuracy)
         elif num_100 is not None and num_50 is not None:
             cls.dll.ezpp_set_accuracy(ez, num_100, num_50)
-        cls.dll.ezpp(ez, filename.encode())
+        cls.dll.ezpp(ez, str(filename).encode())
         pp_out = cls.dll.ezpp_pp(ez)
         return pp_out
 

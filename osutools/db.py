@@ -133,8 +133,8 @@ class Collections:
         with open(path, "rb") as db:
             self.version = read_int(db)
             self.collections = {}
-            no_collections = read_int(db)
-            for _ in range(no_collections):
+            self.no_collections = read_int(db)
+            for _ in range(self.no_collections):
                 collection = []
                 name = read_string(db)
                 no_maps = read_int(db)
@@ -180,11 +180,12 @@ class ScoresDB:
                     if Mods.Target & Mods(score_info["mods"]):
                         score_info["target_practice_acc"] = read_double(db)
 
-                    scores.append(LocalScore(score_info, client, score_info["replay_hash"]))
+                    local_score = LocalScore(score_info, client, score_info["replay_hash"])
+                    scores.append(local_score)
                     score_dict.append(score_info)
                 if score_dict and scores[0].map:
                     map_id = scores[0].map.beatmap_id
-                    self.score_by_map[map_id] = score_dict
+                    self.score_by_map[map_id] = scores
                 self.maps[md5] = scores
 
     def load_pp(self):
