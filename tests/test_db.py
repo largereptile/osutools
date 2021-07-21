@@ -9,7 +9,6 @@ import osutools
 load_dotenv()
 
 token = os.environ["OSU_V1_TOKEN"]
-is_github = os.environ["IS_GITHUB"]
 
 
 @pytest.fixture(scope="module", autouse=True)
