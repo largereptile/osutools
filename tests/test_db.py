@@ -15,7 +15,7 @@ is_github = os.environ["IS_GITHUB"]
 @pytest.fixture(scope="module", autouse=True)
 def load_client():
     client = osutools.OsuClientV1(token)
-    if is_github:
+    if is_github == "0":
         path = Path("test_files") / "osu"
     else:
         path = Path("/github") / "workspace" / "tests" / "test_files" / "osu"
