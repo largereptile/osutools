@@ -7,3 +7,4 @@ osu_tools.egg-info
 *.db
 __pycache__
 .env
+tests/test_files
