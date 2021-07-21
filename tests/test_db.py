@@ -14,7 +14,7 @@ token = os.environ["OSU_V1_TOKEN"]
 @pytest.fixture(scope="module", autouse=True)
 def load_client():
     client = osutools.OsuClientV1(token)
-    client.set_osu_folder(Path.cwd() / "test_files" / "osu")
+    client.set_osu_folder(Path("test_files") / "osu")
     yield client
 
 
