@@ -56,11 +56,18 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
+  
+    - name: Bump version and push tag
+      id: bump
+      uses: anothrNick/github-tag-action@1.26.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
+        automatic_release_tag: "${{ steps.bump.outputs.new_tag }}"
         prerelease: false
-        title: "Release"
+        title: "${{ steps.bump.outputs.new_tag }}"
         files: dist/*
