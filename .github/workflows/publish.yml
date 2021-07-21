@@ -64,7 +64,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: ncipollo/release-action@v1
-    - name: Make release from build
+      name: Make release from build
       with:
         artifacts: "dist/*"
         body: "testing releases"
