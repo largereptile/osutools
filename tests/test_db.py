@@ -9,12 +9,17 @@ import osutools
 load_dotenv()
 
 token = os.environ["OSU_V1_TOKEN"]
+is_github = os.environ["IS_GITHUB"]
 
 
 @pytest.fixture(scope="module", autouse=True)
 def load_client():
     client = osutools.OsuClientV1(token)
-    client.set_osu_folder(Path("test_files") / "osu")
+    if is_github:
+        path = Path("test_files") / "osu"
+    else:
+        path = Path("/github") / "workspace" / "tests" / "test_files" / "osu"
+    client.set_osu_folder(path)
     yield client
 
 
@@ -30,7 +35,7 @@ def test_search_local_maps(load_client):
 
 
 def test_export_osu_db(load_client):
-    json_path = Path("test_files") / "osu_db.json"
+    json_path = "osu_db.json"
     load_client.osu_db.export(json_path)
     with open(json_path, "r") as f:
         osu_db = json.load(f)
