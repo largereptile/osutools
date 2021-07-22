@@ -4,7 +4,6 @@ import tempfile
 import urllib.request
 import os
 import platform
-import pathlib
 from ctypes import *
 
 
