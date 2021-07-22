@@ -8,29 +8,35 @@ from .oppai import Oppai
 class BaseMap:
     def __init__(self, map_info, client):
         self.client = client
-        self.song_title = map_info['title']
-        self.artist = map_info['artist']
-        self.length = float(map_info['total_length']) if float(map_info['total_length']) != 4294967295 else 0
-        self.difficulty_name = map_info['version']
-        self.mode = Mode(int(map_info['mode']))
-        self.beatmap_id = int(map_info['beatmap_id'])
-        self.mapset_id = int(map_info['beatmapset_id'])
-        self.creator_name = map_info['creator']
-        self.tags = map_info['tags'].split(" ")
-        self.approval = Approval(int(map_info['approved']))
-        self.circle_size = float(map_info['diff_size'])
-        self.overall_difficulty = float(map_info['diff_overall'])
-        self.approach_rate = float(map_info['diff_approach'])
-        self.hp_drain = float(map_info['diff_drain'])
-        self.source = map_info['source']
-        self.circle_count = int(map_info['count_normal'])
-        self.slider_count = int(map_info['count_slider'])
-        self.spinner_count = int(map_info['count_spinner'])
+        self.song_title = map_info["title"]
+        self.artist = map_info["artist"]
+        self.length = (
+            float(map_info["total_length"])
+            if float(map_info["total_length"]) != 4294967295
+            else 0
+        )
+        self.difficulty_name = map_info["version"]
+        self.mode = Mode(int(map_info["mode"]))
+        self.beatmap_id = int(map_info["beatmap_id"])
+        self.mapset_id = int(map_info["beatmapset_id"])
+        self.creator_name = map_info["creator"]
+        self.tags = map_info["tags"].split(" ")
+        self.approval = Approval(int(map_info["approved"]))
+        self.circle_size = float(map_info["diff_size"])
+        self.overall_difficulty = float(map_info["diff_overall"])
+        self.approach_rate = float(map_info["diff_approach"])
+        self.hp_drain = float(map_info["diff_drain"])
+        self.source = map_info["source"]
+        self.circle_count = int(map_info["count_normal"])
+        self.slider_count = int(map_info["count_slider"])
+        self.spinner_count = int(map_info["count_spinner"])
         self.total_objects = self.circle_count + self.slider_count + self.spinner_count
-        self.md5_hash = map_info['file_md5']
+        self.md5_hash = map_info["file_md5"]
 
     def __repr__(self):
-        return f"{self.song_title} [{self.difficulty_name}] mapped by {self.creator_name}"
+        return (
+            f"{self.song_title} [{self.difficulty_name}] mapped by {self.creator_name}"
+        )
 
 
 class LocalMap(BaseMap):
@@ -86,10 +92,19 @@ class LocalMap(BaseMap):
         Returns:
             float: Maximum PP for the map.
         """
-        filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
+        filename = (
+            self.client.osu_folder / "Songs" / self.folder_name.strip() / self.filename
+        )
+        # filename = f"{self.client.osu_folder}\\Songs\\{self.folder_name.strip()}\\{self.filename}"
 
-        return Oppai.calculate_pp(filename, mods=score.mods.value, max_combo=score.max_combo, misses=score.misses,
-                                  num_100=score.num_100, num_50=score.num_50)
+        return Oppai.calculate_pp(
+            filename,
+            mods=score.mods.value,
+            max_combo=score.max_combo,
+            misses=score.misses,
+            num_100=score.num_100,
+            num_50=score.num_50,
+        )
 
     def get_local_scores(self):
         if self.md5_hash in self.client.scores_db.maps.keys():
@@ -103,29 +118,38 @@ class LocalMap(BaseMap):
 class Map(BaseMap):
     def __init__(self, map_info, client):
         super().__init__(map_info, client)
-        self.bpm = float(map_info['bpm'])
-        self.genre = Genre(int(map_info['genre_id']))
-        self.language = Language(int(map_info['language_id']))
-        self.creator_id = int(map_info['creator_id'])
-        self.favourites = int(map_info['favourite_count'])
-        self.rating = float(map_info['rating'])
-        self.playcount = int(map_info['playcount'])
-        self.passcount = int(map_info['passcount'])
-        self.date_submitted = datetime.strptime(map_info['submit_date'], "%Y-%m-%d %H:%M:%S")
-        self.date_approved = datetime.strptime(map_info['approved_date'], "%Y-%m-%d %H:%M:%S") if map_info[
-            'approved_date'] else None
-        self.last_update = datetime.strptime(map_info['last_update'], "%Y-%m-%d %H:%M:%S")
-        self.star_rating = float(map_info['difficultyrating'])
-        self.aim_difficulty = float(map_info['diff_aim'])
-        self.speed_difficulty = float(map_info['diff_speed'])
-        self.no_break_length = float(map_info['hit_length'])
-        self.max_combo = int(map_info['max_combo'])
-        self.storyboard = map_info['storyboard'] == "1"
-        self.video = map_info['video'] == "1"
-        self.download_unavailable = map_info['download_unavailable'] == "1"
-        self.audio_unavailable = map_info['audio_unavailable'] == "1"
+        self.bpm = float(map_info["bpm"])
+        self.genre = Genre(int(map_info["genre_id"]))
+        self.language = Language(int(map_info["language_id"]))
+        self.creator_id = int(map_info["creator_id"])
+        self.favourites = int(map_info["favourite_count"])
+        self.rating = float(map_info["rating"])
+        self.playcount = int(map_info["playcount"])
+        self.passcount = int(map_info["passcount"])
+        self.date_submitted = datetime.strptime(
+            map_info["submit_date"], "%Y-%m-%d %H:%M:%S"
+        )
+        self.date_approved = (
+            datetime.strptime(map_info["approved_date"], "%Y-%m-%d %H:%M:%S")
+            if map_info["approved_date"]
+            else None
+        )
+        self.last_update = datetime.strptime(
+            map_info["last_update"], "%Y-%m-%d %H:%M:%S"
+        )
+        self.star_rating = float(map_info["difficultyrating"])
+        self.aim_difficulty = float(map_info["diff_aim"])
+        self.speed_difficulty = float(map_info["diff_speed"])
+        self.no_break_length = float(map_info["hit_length"])
+        self.max_combo = int(map_info["max_combo"])
+        self.storyboard = map_info["storyboard"] == "1"
+        self.video = map_info["video"] == "1"
+        self.download_unavailable = map_info["download_unavailable"] == "1"
+        self.audio_unavailable = map_info["audio_unavailable"] == "1"
         self.download_url = f"https://osu.ppy.sh/osu/{self.beatmap_id}"
-        self.cover_image_url = f"https://assets.ppy.sh/beatmaps/{self.mapset_id}/covers/cover.jpg"
+        self.cover_image_url = (
+            f"https://assets.ppy.sh/beatmaps/{self.mapset_id}/covers/cover.jpg"
+        )
         self.thumbnail = f"https://b.ppy.sh/thumb/{self.mapset_id}l.jpg"
 
     def fetch_creator(self):
@@ -144,8 +168,14 @@ class Map(BaseMap):
         """
         return self.client.get_maps(set_id=self.mapset_id)
 
-    def fetch_scores(self, username: str = None, user_id: int = None,
-                     mode: Mode = Mode.STANDARD, mods: Mods = None, limit: int = 50):
+    def fetch_scores(
+        self,
+        username: str = None,
+        user_id: int = None,
+        mode: Mode = Mode.STANDARD,
+        mods: Mods = None,
+        limit: int = 50,
+    ):
         """Makes an api call to get scores for the map.
 
         Args:
@@ -158,8 +188,14 @@ class Map(BaseMap):
         Returns:
             [Score]: scores matching the search requirements on this map
         """
-        return self.client.fetch_scores(self.beatmap_id, username=username, user_id=user_id,
-                                        mode=mode, mods=mods, limit=limit)
+        return self.client.fetch_scores(
+            self.beatmap_id,
+            username=username,
+            user_id=user_id,
+            mode=mode,
+            mods=mods,
+            limit=limit,
+        )
 
     def get_pp(self, score=None, mods=Mods.NM):
         """
@@ -172,6 +208,12 @@ class Map(BaseMap):
             float: Maximum PP for the map.
         """
         if not self.download_unavailable:
-            pp_out = Oppai.calculate_pp_from_url(self.download_url, mods=score.mods.value, max_combo=score.max_combo,
-                                                 misses=score.misses, num_100=score.num_100, num_50=score.num_50)
+            pp_out = Oppai.calculate_pp_from_url(
+                self.download_url,
+                mods=score.mods.value,
+                max_combo=score.max_combo,
+                misses=score.misses,
+                num_100=score.num_100,
+                num_50=score.num_50,
+            )
             return pp_out

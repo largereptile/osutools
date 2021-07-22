@@ -1,6 +1,7 @@
 from osutools.mapv2 import MapV2, MapCompactV2
 import time
 import requests
+from pathlib import Path
 import json
 from .user import User
 from .map import Map
@@ -18,6 +19,7 @@ class OsuClientV1:
         api_key (str): the api key for your osu! application
 
     """
+
     def __init__(self, key: str):
         """Initialise the client with an api key.
 
@@ -43,11 +45,11 @@ class OsuClientV1:
             None
         """
         if username:
-            params['u'] = username
-            params['type'] = "string"
+            params["u"] = username
+            params["type"] = "string"
         elif user_id:
-            params['u'] = user_id
-            params['type'] = "id"
+            params["u"] = user_id
+            params["type"] = "id"
 
     def _request_api(self, url: str, params: dict):
         """Private method to generalise api requests.
@@ -59,7 +61,7 @@ class OsuClientV1:
         Returns:
             dict: results of the api request (or None if unsuccessful)
         """
-        params['k'] = self.api_key
+        params["k"] = self.api_key
         r = requests.get(f"https://osu.ppy.sh/api/{url}", params=params)
         response_json = r.json()
         if response_json:
@@ -70,7 +72,9 @@ class OsuClientV1:
         else:
             return None
 
-    def fetch_user(self, user_id: int = None, username: str = None, mode: Mode = Mode.STANDARD):
+    def fetch_user(
+        self, user_id: int = None, username: str = None, mode: Mode = Mode.STANDARD
+    ):
         """Make an api request to get information about a given user.
 
         Args:
@@ -89,8 +93,15 @@ class OsuClientV1:
         if user_json:
             return User(user_json[0], self)
 
-    def fetch_scores(self, map_id: int, username: str = None, user_id: int = None,
-                     mode: Mode = Mode.STANDARD, mods: Mods = None, limit: int = 50):
+    def fetch_scores(
+        self,
+        map_id: int,
+        username: str = None,
+        user_id: int = None,
+        mode: Mode = Mode.STANDARD,
+        mods: Mods = None,
+        limit: int = 50,
+    ):
         """Make an api request to retrieve information about scores on a given beatmap.
 
         Args:
@@ -107,13 +118,13 @@ class OsuClientV1:
         params = {"b": map_id, "m": mode.value}
         self._id_or_name(params, username, user_id)
         if mods:
-            params['mods'] = mods.value
+            params["mods"] = mods.value
         if 1 <= limit <= 100:
-            params['limit'] = limit
+            params["limit"] = limit
 
         scores_json = self._request_api("get_scores", params)
         if scores_json:
-            return [Score(score_info, self, params['b']) for score_info in scores_json]
+            return [Score(score_info, self, params["b"]) for score_info in scores_json]
 
     def fetch_map(self, map_id: int):
         """Wrapper for the api call of selecting a map from an id and taking the first one, as it would only return one map anyway.
@@ -127,9 +138,19 @@ class OsuClientV1:
         return self.fetch_maps(map_id=map_id)[0]
 
     # todo: add error handling if invalid mods given
-    def fetch_maps(self, set_id: int = None, map_id: int = None, username: str = None, user_id: int = None,
-                   map_hash: str = None, mode: Mode = Mode.STANDARD, converts: bool = False,
-                   limit: int = 500, mods: Mods = Mods.NM, since: datetime = None):
+    def fetch_maps(
+        self,
+        set_id: int = None,
+        map_id: int = None,
+        username: str = None,
+        user_id: int = None,
+        map_hash: str = None,
+        mode: Mode = Mode.STANDARD,
+        converts: bool = False,
+        limit: int = 500,
+        mods: Mods = Mods.NM,
+        since: datetime = None,
+    ):
         """Api call to search osu!'s beatmap pool.
 
         Args:
@@ -150,23 +171,29 @@ class OsuClientV1:
         params = {"m": mode.value, "mods": mods.value}
         self._id_or_name(params, username, user_id)
         if set_id:
-            params['s'] = set_id
+            params["s"] = set_id
         if map_id:
-            params['b'] = map_id
+            params["b"] = map_id
         if map_hash:
-            params['h'] = map_hash
+            params["h"] = map_hash
         if converts:
-            params['a'] = 1
+            params["a"] = 1
         if 0 <= limit <= 500:
-            params['limit'] = limit
+            params["limit"] = limit
         if since:
-            params['since'] = since.strftime("%Y-%m-%d %H:%M:%S")
+            params["since"] = since.strftime("%Y-%m-%d %H:%M:%S")
 
         maps_json = self._request_api("get_beatmaps", params)
         if maps_json:
             return [Map(map_info, self) for map_info in maps_json]
 
-    def fetch_user_best(self, username: str = None, user_id: int = None, mode: Mode = Mode.STANDARD, limit: int = 10):
+    def fetch_user_best(
+        self,
+        username: str = None,
+        user_id: int = None,
+        mode: Mode = Mode.STANDARD,
+        limit: int = 10,
+    ):
         """Api request to find a users best scores.
 
         Args:
@@ -182,14 +209,23 @@ class OsuClientV1:
             return
         params = {"m": mode.value}
         if 1 <= limit <= 100:
-            params['limit'] = limit
+            params["limit"] = limit
         self._id_or_name(params, username, user_id)
 
         best_json = self._request_api("get_user_best", params)
         if best_json:
-            return [Score(score_info, self, score_info['beatmap_id']) for score_info in best_json]
+            return [
+                Score(score_info, self, score_info["beatmap_id"])
+                for score_info in best_json
+            ]
 
-    def fetch_user_recent(self, username: str = None, user_id: int = None, mode: Mode = Mode.STANDARD, limit: int = 10):
+    def fetch_user_recent(
+        self,
+        username: str = None,
+        user_id: int = None,
+        mode: Mode = Mode.STANDARD,
+        limit: int = 10,
+    ):
         """Api request to retrieve a user's recent scores (within the last 24 hours).
 
         Args:
@@ -206,10 +242,13 @@ class OsuClientV1:
         params = {"m": mode.value}
         self._id_or_name(params, username, user_id)
         if 1 <= limit <= 100:
-            params['limit'] = limit
+            params["limit"] = limit
         recent_json = self._request_api("get_user_recent", params)
         if recent_json:
-            return [RecentScore(score_info, self, score_info['beatmap_id']) for score_info in recent_json]
+            return [
+                RecentScore(score_info, self, score_info["beatmap_id"])
+                for score_info in recent_json
+            ]
 
     """
     Requesting via beatmap and user was broken when I was testing but I'll leave the function here in case it's just
@@ -274,11 +313,10 @@ class OsuClientV1:
         return self.scores_db
 
     def set_osu_folder(self, path):
-        self.osu_folder = path
-        self.osu_db = OsuDB(self, f"{path}/osu!.db")
-        self.scores_db = ScoresDB(self, f"{path}/scores.db")
-        self.collections_db = Collections(self, f"{path}/collection.db")
-
+        self.osu_folder = Path(path)
+        self.osu_db = OsuDB(self, self.osu_folder / "osu!.db")
+        self.scores_db = ScoresDB(self, self.osu_folder / "scores.db")
+        self.collections_db = Collections(self, self.osu_folder / "collection.db")
 
 class OsuClientV2:
     def __init__(self, client_id, client_secret) -> None:
@@ -310,7 +348,7 @@ class OsuClientV2:
             return r.json()
         else:
             r.raise_for_status()
-    
+
     def lookup_beatmap(self, checksum: str = None, map_id: int = None, filename: str = None):
         params = {}
         if checksum:
@@ -319,10 +357,10 @@ class OsuClientV2:
             params["id"] = map_id
         if filename:
             params["filename"] = filename
-        
+
         if not (checksum or map_id or filename):
             raise RequestException("No arguments given")
-        
+
         response = self._request_api("beatmaps/lookup", params=params)
         if "accuracy" in response.keys():
             return MapV2(self, response)
