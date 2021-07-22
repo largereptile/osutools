@@ -1,5 +1,9 @@
 # noinspection PyProtectedMember
-from enum import Enum, Flag, _decompose  # yes this method is meant to be package private but Flag did everything I wanted it to apart from this
+from enum import (
+    Enum,
+    Flag,
+    _decompose,
+)  # yes this method is meant to be package private but Flag did everything I wanted it to apart from this
 from datetime import timedelta, datetime, timezone
 import struct
 from json import JSONEncoder
@@ -7,6 +11,7 @@ from json import JSONEncoder
 
 class Mode(Enum):
     """Translates api return to osu! gamemode"""
+
     STANDARD = 0
     TAIKO = 1
     CTB = 2
@@ -15,6 +20,7 @@ class Mode(Enum):
 
 class Teams(Enum):
     """Translates api return to osu! multiplayer team"""
+
     NONE = 0
     BLUE = 1
     RED = 2
@@ -22,6 +28,7 @@ class Teams(Enum):
 
 class TeamType(Enum):
     """Translates api return to osu! multiplayer team type"""
+
     HEADTOHEAD = 0
     TAGCOOP = 1
     TEAMVS = 2
@@ -30,6 +37,7 @@ class TeamType(Enum):
 
 class WinCon(Enum):
     """Translates api return to osu! multiplayer scoring type"""
+
     SCORE = 0
     ACCURACY = 1
     COMBO = 2
@@ -38,6 +46,7 @@ class WinCon(Enum):
 
 class Approval(Enum):
     """Translates api return to a stage in the map ranking process"""
+
     GRAVEYARD = -2
     WIP = -1
     PENDING = 0
@@ -49,6 +58,7 @@ class Approval(Enum):
 
 class Genre(Enum):
     """Translates an api return to a specific genre"""
+
     ANY = 0
     UNSPECIFIED = 1
     VIDEO_GAME = 2
@@ -67,6 +77,7 @@ class Genre(Enum):
 
 class Language(Enum):
     """Translates an api return to a specific language"""
+
     ANY = 0
     UNSPECIFIED = 1
     ENGLISH = 2
@@ -84,14 +95,29 @@ class Language(Enum):
     OTHER = 14
 
 
-mod_order = ["EZ", "HD", "DT", "NC", "HT", "HR", "FL", "SD", "PF", "NF", "SO", "TF", "NM"]
+mod_order = [
+    "EZ",
+    "HD",
+    "DT",
+    "NC",
+    "HT",
+    "HR",
+    "FL",
+    "SD",
+    "PF",
+    "NF",
+    "SO",
+    "TF",
+    "NM",
+]
 """[str]: Ordered list of mods. Can probably override to customise print order."""
 
 
 # sorry alex
 # noinspection PyProtectedMember
 class Mods(Flag):
-    """Translate between bitwise api return and mod combinations for a score """
+    """Translate between bitwise api return and mod combinations for a score"""
+
     def __str__(self):
         """Represents the mod when it is printed
 
@@ -99,7 +125,7 @@ class Mods(Flag):
             str: string representing the mods used in the "correct" (up to interpretation but I used scoreposts as a base) order
         """
         m = self.mod_list()
-        return ''.join([mod for mod in mod_order if mod in m])
+        return "".join([mod for mod in mod_order if mod in m])
 
     def mod_list(self):
         """Get a list of the mods used as strings
@@ -169,7 +195,7 @@ def modstr_to_enums(mods: str):
                 break
             except KeyError:
                 pass
-        mods = mods[len(mod_str):]
+        mods = mods[len(mod_str) :]
     return parsed_mods
 
 
@@ -194,6 +220,7 @@ class Playtime:
         days: days played
         combined: formatted time spent playing
     """
+
     def __init__(self, seconds):
         self.seconds = seconds
         self.hours = seconds / 60 / 60
@@ -238,7 +265,7 @@ def read_leb128(db):
     shift = 0
     while True:
         byte = read_byte(db)
-        result |= (byte & 0x7f) << shift
+        result |= (byte & 0x7F) << shift
         if (byte & 0x80) == 0:
             break
         shift += 7
@@ -247,15 +274,15 @@ def read_leb128(db):
 
 def read_string(db):
     present = db.read(1)
-    if present == b'\x00':
+    if present == b"\x00":
         return None
 
     size = read_leb128(db)
     string = db.read(size)
     try:
-        ret = string.decode('utf-8')
+        ret = string.decode("utf-8")
     except ValueError:
-        ret = string.decode('ISO-8859-1')
+        ret = string.decode("ISO-8859-1")
     return ret
 
 
@@ -277,4 +304,4 @@ def read_timing(db):
 def read_datetime(db):
     ticks = read_long(db)
     start = datetime(year=1, month=1, day=1, tzinfo=timezone.utc)
-    return start + timedelta(microseconds=ticks*0.1)
+    return start + timedelta(microseconds=ticks * 0.1)

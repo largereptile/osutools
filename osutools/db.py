@@ -53,13 +53,21 @@ class OsuDB:
                 map_info["slider_velocity"] = read_double(db)
                 if self.version >= 20140609:
                     no_pairs = read_int(db)
-                    map_info["standard_star_ratings"] = [read_int_double(db) for _ in range(no_pairs)]
+                    map_info["standard_star_ratings"] = [
+                        read_int_double(db) for _ in range(no_pairs)
+                    ]
                     no_pairs = read_int(db)
-                    map_info["taiko_star_ratings"] = [read_int_double(db) for _ in range(no_pairs)]
+                    map_info["taiko_star_ratings"] = [
+                        read_int_double(db) for _ in range(no_pairs)
+                    ]
                     no_pairs = read_int(db)
-                    map_info["ctb_star_ratings"] = [read_int_double(db) for _ in range(no_pairs)]
+                    map_info["ctb_star_ratings"] = [
+                        read_int_double(db) for _ in range(no_pairs)
+                    ]
                     no_pairs = read_int(db)
-                    map_info["mania_star_ratings"] = [read_int_double(db) for _ in range(no_pairs)]
+                    map_info["mania_star_ratings"] = [
+                        read_int_double(db) for _ in range(no_pairs)
+                    ]
                 map_info["drain_time"] = read_int(db)
                 map_info["total_length"] = read_int(db)
                 map_info["preview_start_time"] = read_int(db)
@@ -167,12 +175,23 @@ class ScoresDB:
                 no_scores = read_int(db)
                 for _ in range(no_scores):
 
-                    score_info = {"mode": read_byte(db), "version": read_int(db), "map_hash": read_string(db),
-                                  "username": read_string(db), "replay_hash": read_string(db),
-                                  "count300": read_short(db), "count100": read_short(db), "count50": read_short(db),
-                                  "countgeki": read_short(db), "countkatu": read_short(db), "countmiss": read_short(db),
-                                  "score": read_int(db), "maxcombo": read_short(db), "perfect": read_bool(db),
-                                  "mods": read_int(db)}
+                    score_info = {
+                        "mode": read_byte(db),
+                        "version": read_int(db),
+                        "map_hash": read_string(db),
+                        "username": read_string(db),
+                        "replay_hash": read_string(db),
+                        "count300": read_short(db),
+                        "count100": read_short(db),
+                        "count50": read_short(db),
+                        "countgeki": read_short(db),
+                        "countkatu": read_short(db),
+                        "countmiss": read_short(db),
+                        "score": read_int(db),
+                        "maxcombo": read_short(db),
+                        "perfect": read_bool(db),
+                        "mods": read_int(db),
+                    }
                     read_string(db)
                     score_info["timestamp"] = read_datetime(db)
                     read_int(db)
@@ -180,7 +199,9 @@ class ScoresDB:
                     if Mods.Target & Mods(score_info["mods"]):
                         score_info["target_practice_acc"] = read_double(db)
 
-                    local_score = LocalScore(score_info, client, score_info["replay_hash"])
+                    local_score = LocalScore(
+                        score_info, client, score_info["replay_hash"]
+                    )
                     scores.append(local_score)
                     score_dict.append(score_info)
                 if score_dict and scores[0].map:
@@ -203,7 +224,9 @@ class ScoresDB:
                         continue
             scores_before = list(filter(lambda x: x.timestamp < timestamp, scores))
             if names:
-                scores_before = list(filter(lambda x: x.username in names, scores_before))
+                scores_before = list(
+                    filter(lambda x: x.username in names, scores_before)
+                )
             if scores_before:
                 before_timestamp[md5] = scores_before
         return before_timestamp
@@ -211,7 +234,9 @@ class ScoresDB:
     def get_best_scores_before(self, timestamp, names=None, ranked_only=False):
         if not names:
             names = [self.client.osu_db.player_name]
-        all_scores = self.get_scores_before(timestamp, names=names, ranked_only=ranked_only)
+        all_scores = self.get_scores_before(
+            timestamp, names=names, ranked_only=ranked_only
+        )
         best_scores = []
         for md5, scores in all_scores.items():
             try:

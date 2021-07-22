@@ -25,21 +25,27 @@ class BaseScore:
 
     def __init__(self, score_info, client):
         self.client = client
-        self.num_300 = int(score_info['count300'])
-        self.num_100 = int(score_info['count100'])
-        self.num_50 = int(score_info['count50'])
-        self.misses = int(score_info['countmiss'])
-        self.max_combo = int(score_info['maxcombo'])
-        self.num_katu = int(score_info['countkatu'])
-        self.num_geki = int(score_info['countgeki'])
-        self.perfect = (score_info['perfect'] == "1") or score_info['perfect']
-        self.user_id = int(score_info['user_id']) if "user_id" in score_info else None
-        self.score = int(score_info['score'])
-        self.username = score_info['username'] if "username" in score_info else self.user_id
+        self.num_300 = int(score_info["count300"])
+        self.num_100 = int(score_info["count100"])
+        self.num_50 = int(score_info["count50"])
+        self.misses = int(score_info["countmiss"])
+        self.max_combo = int(score_info["maxcombo"])
+        self.num_katu = int(score_info["countkatu"])
+        self.num_geki = int(score_info["countgeki"])
+        self.perfect = (score_info["perfect"] == "1") or score_info["perfect"]
+        self.user_id = int(score_info["user_id"]) if "user_id" in score_info else None
+        self.score = int(score_info["score"])
+        self.username = (
+            score_info["username"] if "username" in score_info else self.user_id
+        )
         self.successful_hits = self.num_50 + self.num_100 + self.num_300
         self.map_total_hits = self.successful_hits + self.misses
-        temp_accuracy = (self.num_50 * 50 + self.num_100 * 100 + self.num_300 * 300) / (
-                self.map_total_hits * 300) if self.map_total_hits != 0 else 0
+        temp_accuracy = (
+            (self.num_50 * 50 + self.num_100 * 100 + self.num_300 * 300)
+            / (self.map_total_hits * 300)
+            if self.map_total_hits != 0
+            else 0
+        )
         self.accuracy_dec = min(1.0, max(0.0, temp_accuracy))
 
     def fetch_user(self):
@@ -66,12 +72,12 @@ class Score(BaseScore):
 
     def __init__(self, score_info, client, map_id):
         self.map_id = map_id
-        self.score_id = int(score_info['score_id'])
-        self.timestamp = datetime.strptime(score_info['date'], "%Y-%m-%d %H:%M:%S")
-        self.mods = Mods(int(score_info['enabled_mods']))
-        self.rank = score_info['rank']
-        self.pp = float(score_info['pp']) if score_info['pp'] else 0
-        self.replay_available = score_info['replay_available'] == "1"
+        self.score_id = int(score_info["score_id"])
+        self.timestamp = datetime.strptime(score_info["date"], "%Y-%m-%d %H:%M:%S")
+        self.mods = Mods(int(score_info["enabled_mods"]))
+        self.rank = score_info["rank"]
+        self.pp = float(score_info["pp"]) if score_info["pp"] else 0
+        self.replay_available = score_info["replay_available"] == "1"
         super().__init__(score_info, client)
 
     def fetch_map(self):
@@ -92,9 +98,9 @@ class RecentScore(BaseScore):
 
     def __init__(self, score_info, client, map_id):
         self.map_id = map_id
-        self.timestamp = datetime.strptime(score_info['date'], "%Y-%m-%d %H:%M:%S")
-        self.mods = Mods(int(score_info['enabled_mods']))
-        self.rank = score_info['rank']
+        self.timestamp = datetime.strptime(score_info["date"], "%Y-%m-%d %H:%M:%S")
+        self.mods = Mods(int(score_info["enabled_mods"]))
+        self.rank = score_info["rank"]
         super().__init__(score_info, client)
 
     def __repr__(self):
@@ -115,16 +121,29 @@ class MultiScore(BaseScore):
 
     """
 
-    def __init__(self, score_info: dict, client, map_id: int, match_id: int, game_id: int, mods: Mods):
+    def __init__(
+        self,
+        score_info: dict,
+        client,
+        map_id: int,
+        match_id: int,
+        game_id: int,
+        mods: Mods,
+    ):
         self.map_id = map_id
         self.game_id = game_id
         self.match_id = match_id
         self.slot = int(score_info["slot"])
         self.team = Teams(int(score_info["team"]))
         self.rank = int(
-            score_info["rank"])  # says not used on the wiki but lists it anyway so ill catch it just in case
+            score_info["rank"]
+        )  # says not used on the wiki but lists it anyway so ill catch it just in case
         self.passed = score_info["pass"] == "1"
-        self.mods = mods if not score_info["enabled_mods"] else Mods(mods.value + int(score_info["enabled_mods"]))
+        self.mods = (
+            mods
+            if not score_info["enabled_mods"]
+            else Mods(mods.value + int(score_info["enabled_mods"]))
+        )
         super().__init__(score_info, client)
 
     def __repr__(self):
