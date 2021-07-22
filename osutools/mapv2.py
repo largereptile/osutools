@@ -6,6 +6,7 @@ from .oppai import Oppai
 
 # TODO: make timestamps actual timestamps
 
+
 class MapCompactV2:
     def __init__(self, client, params) -> None:
         self.client = client
@@ -32,6 +33,7 @@ class MapCompactV2:
     def __repr__(self):
         return self.repr_string
 
+
 class MapV2(MapCompactV2):
     def __init__(self, client, params) -> None:
         self.overall_difficulty = float(params["accuracy"])
@@ -44,7 +46,9 @@ class MapV2(MapCompactV2):
         self.spinner_count = int(params["count_spinners"])
         self.total_objects = self.circle_count + self.slider_count + self.spinner_count
         self.circle_size = float(params["cs"])
-        self.deleted_at = None if params["deleted_at"] == "null" else params["deleted_at"]
+        self.deleted_at = (
+            None if params["deleted_at"] == "null" else params["deleted_at"]
+        )
         self.hp_drain = float(params["drain"])
         self.no_break_length = int(params["hit_length"])
         self.is_scoreable = bool(params["is_scoreable"])
@@ -56,17 +60,21 @@ class MapV2(MapCompactV2):
         self.url = params["url"]
         super().__init__(client, params)
 
+
 class BeatmapPlaycount:
     def __init__(self) -> None:
         pass
-        
+
+
 class BeatmapScores:
     def __init__(self) -> None:
         pass
 
+
 class BeatmapUserScore:
     def __init__(self) -> None:
         pass
+
 
 class BeatmapsetCompactV2:
     def __init__(self, client, params) -> None:
@@ -86,20 +94,45 @@ class BeatmapsetCompactV2:
         self.song_title_unicode = params["title_unicode"]
         self.creator_id = int(params["user_id"])
         self.video = bool(params["video"])
-        self.beatmaps = [MapV2(client, m) for m in params["beatmaps"]] if "beatmaps" in params.keys() else None
+        self.beatmaps = (
+            [MapV2(client, m) for m in params["beatmaps"]]
+            if "beatmaps" in params.keys()
+            else None
+        )
         self.converts = params["converts"] if "converts" in params.keys() else None
-        self.current_user_attributes = params["current_user_attributes"] if "current_user_attributes" in params.keys() else None
-        self.description = params["description"] if "description" in params.keys() else None
-        self.discussions = params["discussions"] if "discussions" in params.keys() else None
+        self.current_user_attributes = (
+            params["current_user_attributes"]
+            if "current_user_attributes" in params.keys()
+            else None
+        )
+        self.description = (
+            params["description"] if "description" in params.keys() else None
+        )
+        self.discussions = (
+            params["discussions"] if "discussions" in params.keys() else None
+        )
         self.events = params["events"] if "events" in params.keys() else None
         self.genre = params["genre"] if "genre" in params.keys() else None
-        self.has_favourited = bool(params["has_favourited"]) if "has_favourited" in params.keys() else None
+        self.has_favourited = (
+            bool(params["has_favourited"])
+            if "has_favourited" in params.keys()
+            else None
+        )
         self.language = params["language"] if "language" in params.keys() else None
-        self.nominations = params["nominations"] if "nominations" in params.keys() else None
+        self.nominations = (
+            params["nominations"] if "nominations" in params.keys() else None
+        )
         self.ratings = params["ratings"] if "ratings" in params.keys() else None
-        self.recent_favourites = params["recent_favourites"] if "recent_favourites" in params.keys() else None
-        self.related_users = params["related_users"] if "related_users" in params.keys() else None
+        self.recent_favourites = (
+            params["recent_favourites"]
+            if "recent_favourites" in params.keys()
+            else None
+        )
+        self.related_users = (
+            params["related_users"] if "related_users" in params.keys() else None
+        )
         self.user = params["user"] if "user" in params.keys() else None
+
 
 class BeatmapsetV2(BeatmapsetCompactV2):
     def __init__(self, client, params) -> None:
@@ -112,7 +145,11 @@ class BeatmapsetV2(BeatmapsetCompactV2):
         self.hype = Hype(params["hype"]) if params["hype"] else None
         self.is_scoreable = bool(params["is_scoreable"])
         self.last_updated = params["last_updated"]
-        self.legacy_thread_url = None if params["legacy_thread_url"] == "null" else params["legacy_thread_url"]
+        self.legacy_thread_url = (
+            None
+            if params["legacy_thread_url"] == "null"
+            else params["legacy_thread_url"]
+        )
         self.nominations = Nominations(params["nominations_summary"])
         self.approval = Approval(int(params["ranked"]))
         self.ranked_date = params["ranked_date"]
@@ -120,31 +157,41 @@ class BeatmapsetV2(BeatmapsetCompactV2):
         self.storyboard = bool(params["storyboard"])
         self.date_submitted = params["submitted_date"]
         self.tags = params["tags"].split(" ")
-        self.has_favourited = params["has_favourited"] if "has_favourited" in params.keys() else None
+        self.has_favourited = (
+            params["has_favourited"] if "has_favourited" in params.keys() else None
+        )
         super().__init__(client, params)
+
 
 class Availability:
     def __init__(self, params):
         self.download_disabled = bool(params["download_disabled"])
-        self.more_information = None if params["more_information"] == "null" else params["more_information"]
+        self.more_information = (
+            None if params["more_information"] == "null" else params["more_information"]
+        )
+
 
 class Hype:
     def __init__(self, params):
         self.current = int(params["current"])
         self.required = int(params["required"])
 
+
 class Nominations:
     def __init__(self, params) -> None:
         self.current = int(params["current"])
         self.required = int(params["required"])
 
+
 class BeatmapsetDiscussion:
     def __init__(self) -> None:
         pass
 
+
 class BeatmapsetDiscussionPost:
     def __init__(self) -> None:
         pass
+
 
 class BeatmapsetDiscussionVote:
     def __init__(self) -> None:

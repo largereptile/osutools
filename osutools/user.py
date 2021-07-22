@@ -54,7 +54,7 @@ class User:
         self.s_count = int(user_info["count_rank_s"])
         self.sh_count = int(user_info["count_rank_sh"])
         self.a_count = int(user_info["count_rank_a"])
-        self.country = user_info["country"]
+        self.country_code = user_info["country"]
         self.country_rank = int(user_info["pp_country_rank"])
         seconds = int(user_info["total_seconds_played"])
         self.playtime = Playtime(seconds)

@@ -1,10 +1,11 @@
-from osutools.mapv2 import MapV2, MapCompactV2
 import time
 import requests
 from pathlib import Path
 import json
 from .user import User
+from .userv2 import UserV2, UserCompactV2
 from .map import Map
+from .mapv2 import MapV2, MapCompactV2
 from .score import Score, RecentScore
 from .utils import *
 from .match import Match
@@ -320,6 +321,7 @@ class OsuClientV1:
         self.scores_db = ScoresDB(self, self.osu_folder / "scores.db")
         self.collections_db = Collections(self, self.osu_folder / "collection.db")
 
+
 class OsuClientV2:
     def __init__(self, client_id, client_secret) -> None:
         self.id = client_id
@@ -327,8 +329,12 @@ class OsuClientV2:
         self._get_auth_token()
 
     def _get_auth_token(self) -> None:
-        params = {"client_id": self.id, "client_secret": self.secret,
-                "grant_type": "client_credentials", "scope": "public"}
+        params = {
+            "client_id": self.id,
+            "client_secret": self.secret,
+            "grant_type": "client_credentials",
+            "scope": "public",
+        }
         r = requests.post("https://osu.ppy.sh/oauth/token", data=params)
         if r.status_code == 401:
             raise RequestException("Invalid Credentials Given")
@@ -341,17 +347,21 @@ class OsuClientV2:
     def auth_token_valid(self) -> bool:
         return time.time() < self.refresh_time + self.expires_in
 
-    def _request_api(self, url: str, params: dict={}):
+    def _request_api(self, url: str, params: dict = {}):
         if not self.auth_token_valid():
             self._get_auth_token()
         headers = {"Authorization": f"Bearer {self.access_token}"}
-        r = requests.get(f"https://osu.ppy.sh/api/v2/{url}", headers=headers, params=params)
+        r = requests.get(
+            f"https://osu.ppy.sh/api/v2/{url}", headers=headers, params=params
+        )
         if r.status_code == 200:
             return r.json()
         else:
             r.raise_for_status()
 
-    def lookup_beatmap(self, checksum: str = None, map_id: int = None, filename: str = None):
+    def lookup_beatmap(
+        self, checksum: str = None, map_id: int = None, filename: str = None
+    ):
         params = {}
         if checksum:
             params["checksum"] = checksum
@@ -375,3 +385,27 @@ class OsuClientV2:
             return MapV2(self, response)
         else:
             return MapCompactV2(self, response)
+
+    def fetch_user(self, user_id: int=None, username: str=None, mode: Mode=Mode.STANDARD):
+        if mode == Mode.STANDARD:
+            mode_str = "osu"
+        elif mode == Mode.CTB:
+            mode_str = "ctb"
+        elif mode == Mode.TAIKO:
+            mode_str = "taiko"
+        else:
+            mode_str = "mania"
+        if user_id:
+            params = {"key": "id"}
+            response = self._request_api(f"users/{user_id}/{mode_str}", params=params)
+        elif username:
+            params = {"key": "username"}
+            response = self._request_api(f"users/{username}/{mode_str}", params=params)
+        else:
+            return None
+
+        print(response)
+        if "interests" in response.keys():
+            return UserV2(self, response)
+        else:
+            return UserCompactV2(self, response)
