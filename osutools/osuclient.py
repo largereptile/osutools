@@ -238,7 +238,7 @@ class OsuClientV1:
             [Score]: List of Score objects representing a user's recent plays
         """
         if not (username or user_id):
-            return
+            raise RequestException("No user provided")
         params = {"m": mode.value}
         self._id_or_name(params, username, user_id)
         if 1 <= limit <= 100:
@@ -249,6 +249,8 @@ class OsuClientV1:
                 RecentScore(score_info, self, score_info["beatmap_id"])
                 for score_info in recent_json
             ]
+        else:
+            return []
 
     """
     Requesting via beatmap and user was broken when I was testing but I'll leave the function here in case it's just
